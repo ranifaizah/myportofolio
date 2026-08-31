@@ -1,4 +1,4 @@
-Nama : Rani
+Nama : Rani Faizah A
 
 NPM : 2506624013
 
