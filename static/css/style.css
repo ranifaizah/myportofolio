@@ -1,68 +1,74 @@
+
+/*menghilangkan margin default browser */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
 :root {
-    --ink: #1c1917;
-    --paper: #faf6f0;
-    --accent: #d95d39;
-    --accent-dark: #a8442a;
-    --line: #e3d9c9;
-    --text-muted: #6b6459;
-    --radius: 4px;
+    --ink: #1c1917; /*warna text utama */
+    --paper: #faf6f0; /*warna bg */
+    --accent: #d95d39; /*warna accent*/
+    --accent-dark: #a8442a; /*shading gelap dri accent color*/
+    --line: #e3d9c9; /*warna garis pembatas */
+    --text-muted: #6b6459; /*warna secondary text */
+    --radius: 4px; /*border radiusnya seberapa */
 }
 
 body {
+    /*jenis font*/
     font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: var(--ink);
-    background-color: var(--paper);
-    line-height: 1.6;
+    color: var(--ink); /*warna dri font nya */
+    background-color: var(--paper); /*warna bg */
+    line-height: 1.6; /*spacing*/
 }
 
-h1, .brand {
+h1, .brand { /*brand or judul pling gede */
     font-family: "Space Grotesk", -apple-system, sans-serif;
 }
 
-.container {
+.container { /*pembatas utk nandain center nya mana */
     max-width: 960px;
     margin: 0 auto;
     padding: 0 1.5rem;
 }
-.site-header {
+.site-header { /*garis pembatas bawah header*/
     border-bottom: 1px solid var(--line);
 }
 
-.site-header .container {
+.site-header .container { /*container yang bakal ada di dalam header apa aja */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.25rem 1.5rem;
 }
 
-.brand {
+.brand { /*buat tulisan rani */
     font-size: 1.3rem;
     font-weight: 700;
     color: var(--ink);
     text-decoration: none;
 }
 
-.site-header nav {
+.site-header nav { /*ngedisplay nav bar (profile dan skills for now..*/
     display: flex;
     gap: 2rem;
 }
 
-.site-header nav a {
+.site-header nav a { /*styling tiap link yg ada dalam nav */
     color: var(--ink);
     text-decoration: none;
     font-size: 0.95rem;
 }
-.hero {
+
+/* ---hero section bagian atas (bagian profile) --- */
+.hero { /*buat jarak atas bawah */
     padding: 4.5rem 0 5rem;
 }
 
-.hero-grid {
+.hero-grid { /*grid hero kanan kiri biar gampang atur posisi*/
     display: grid;
     grid-template-columns: 1.3fr 1fr;
     grid-template-areas:
@@ -71,41 +77,41 @@ h1, .brand {
     gap: 1.5rem 3rem;
 }
 
-.hero-identity {
+.hero-identity { /*naro elemen identitas */
     grid-area: identity;
 }
 
-.hero-details {
+.hero-details { /*naro elemen detail */
     grid-area: details;
 }
 
-.hero-kicker {
+.hero-kicker { /*label di atas nama kek bagian "Computer Sciernce" . UI */
     font-size: 0.85rem;
     letter-spacing: 0.08em;
-    text-transform: uppercase;
+    text-transform: uppercase; /*kapital semua */
     color: var(--accent-dark);
     font-weight: 700;
     margin-bottom: 0.75rem;
 }
 
-.hero-identity h1 {
+.hero-identity h1 { 
     font-size: clamp(3rem, 7vw, 5rem);
     line-height: 0.95;
 }
 
-.bio {
+.bio { /*bagian bio lbh pudar */
     color: var(--text-muted);
     max-width: 480px;
     margin-bottom: 1.5rem;
 }
 
-.meta-list {
+.meta-list { /*utk tulisan "NPM" dan Program" */
     display: flex;
     gap: 2rem;
     margin-bottom: 1.5rem;
 }
 
-.meta-row dt {
+.meta-row dt { /*utk tulisan "NPM" dan Program" */
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -117,13 +123,13 @@ h1, .brand {
     font-weight: 600;
 }
 
-.social-links {
+.social-links { /*wadah tombol sosmed*/
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
 }
 
-.social-link {
+.social-link { /* styling tombol sosial media */
     display: inline-block;
     font-size: 0.85rem;
     font-weight: 600;
@@ -139,13 +145,13 @@ h1, .brand {
     background-color: var(--accent);
 }
 
-.hero-photo {
+.hero-photo { /*wadah foto profil */
     grid-area: photo;
     align-self: center;
     position: relative;
 }
 
-.photo-block {
+.photo-block { /*kotak oren belakang foto */
     position: absolute;
     top: 1.25rem;
     left: 1.25rem;
@@ -156,7 +162,7 @@ h1, .brand {
     z-index: 0;
 }
 
-.avatar {
+.avatar { /*foto nya */
     position: relative;
     z-index: 1;
     display: block;
@@ -166,6 +172,8 @@ h1, .brand {
     border-radius: var(--radius);
     border: 3px solid var(--ink);
 }
+
+/*----footer----*/
 .site-footer {
     padding: 1.5rem;
     color: var(--text-muted);
@@ -173,6 +181,7 @@ h1, .brand {
     border-top: 1px solid var(--line);
 }
 
+/*----responsve mobile ----*/
 @media (max-width: 600px) {
     .hero-grid {
         grid-template-columns: 1fr;
