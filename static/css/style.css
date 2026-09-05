@@ -8,7 +8,7 @@
 
 
 :root {
-    --ink: #1c1917; /*warna text utama */
+    --ink: #1c171a; /*warna text utama */
     --paper: #faf6f0; /*warna bg */
     --accent: #d95d39; /*warna accent*/
     --accent-dark: #a8442a; /*shading gelap dri accent color*/
@@ -173,6 +173,65 @@ h1, .brand { /*brand or judul pling gede */
     border: 3px solid var(--ink);
 }
 
+/*---skills section---*/
+.skills {
+    padding: 4rem 0 5rem;
+    border-top: 1px solid var(--line);
+}
+
+.skills h2 {
+    font-family: "Space Grotesk", -apple-system, sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+
+.skills-grid { /*wadah skills*/
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.skills-category {
+    flex: 1 1 220px;
+}
+
+.skills-category h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+}
+
+.skill-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-list li {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink);
+    background-color: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0.4rem 0.9rem;
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.skill-list li:hover {
+    border-color: var(--accent);
+    color: var(--accent-dark);
+    transform: translateY(-2px);
+}
+
 /*----footer----*/
 .site-footer {
     padding: 1.5rem;
@@ -180,6 +239,7 @@ h1, .brand { /*brand or judul pling gede */
     font-size: 0.85rem;
     border-top: 1px solid var(--line);
 }
+
 
 /*----responsve mobile ----*/
 @media (max-width: 600px) {
@@ -198,4 +258,12 @@ h1, .brand { /*brand or judul pling gede */
     .social-links {
         justify-content: flex-start;
     }
+
+    .skills-grid {
+        flex-direction: column;
+        gap: 2rem;
+    }
 }
+
+
+
