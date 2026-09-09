@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rani - Portfolio</title>
+    <title>{{ name }} - Portofolio</title> <!---changes--->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -11,13 +11,16 @@
 </head>
 <body>
     <header class="site-header">
+    
         <div class="container">
-            <a href="#profile" class="brand">Rani</a>
-            <nav>
-                <a href="#profile">Profile</a>
-                <a href="#skills">Skills</a>
-                <a href="#experience">experience</a>
+            <a href="#profile" class="brand">{{ name }}</a> <!---changes--->
+            
+    
+            <nav><!---nav changes--->
+                <a href="{% url 'main:show_main' %}">Profile</a>
+                <a href="{% url 'main:show_experience' %}">Experience</a>
             </nav>
+
         </div>
     </header>
 
@@ -26,22 +29,23 @@
             <div class="container hero-grid">
                 <div class="hero-identity">
                     <p class="hero-kicker">Computer Science &middot; Universitas Indonesia</p>
-                    <h1>Rani</h1>
+                    <h1>{{ name }}</h1> <!---changes--->
                 </div>
                 <div class="hero-photo">
                     <div class="photo-block"></div>
-                    <img class="avatar" src="/static/img/ranran.jpe" alt="Photo of Rani">
+                    <img class="avatar" src="/static/img/ranran.jpe" alt="Photo of {{ name }}"> <!---changes--->
                 </div>
                 <div class="hero-details">
-                    <p class="bio"> A Computer Science student at the University of Indonesia with a strong passion for technology and innovation. In addition to my technical background, I have a keen interest in illustration and graphic design. Always eager to learn new things and contribute to technology-driven projects that create meaningful and positive impacts,</p>
+                    <!---changes--->
+                    <p class="bio">{{ bio }}</p>
                     <dl class="meta-list">
                         <div class="meta-row">
                             <dt>NPM</dt>
-                            <dd>2506624013</dd>
+                            <dd>{{ npm }}</dd> <!---changes--->
                         </div>
                         <div class="meta-row">
                             <dt>Program</dt>
-                            <dd>S1 Ilmu Komputer</dd>
+                            <dd> {{study_program}} </dd> <!---changes--->
                         </div>
                     </dl>
                     <div class="social-links">
@@ -116,7 +120,7 @@
 
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; 2026 Rani. Fakultas Ilmu Komputer, Universitas Indonesia.</p>
+            <p>&copy; 2026 {{ name }}. Fakultas Ilmu Komputer, Universitas Indonesia.</p>
         </div>
     </footer>
 </body>
