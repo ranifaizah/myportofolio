@@ -233,7 +233,7 @@ h1, .brand { /*brand or judul pling gede */
 }
 
 /*---Experience section---*/
-/*
+
 .experience {
     padding: 4rem 0 5rem;
     border-top: 1px solid var(--line);
@@ -300,7 +300,7 @@ h1, .brand { /*brand or judul pling gede */
     .experience-list {
         flex-direction: column;
     }
-} */
+} 
 
 /*expy yg baru */
 .experience-section {
