@@ -329,7 +329,7 @@ h1, .brand { /*brand or judul pling gede */
 
 .experience-card {
     padding: 1.25rem;
-    background-color: #fff;
+    background-color: #e8aeae;
     border: 1px solid var(--line);
     border-radius: var(--radius);
 }
