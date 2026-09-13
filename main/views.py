@@ -22,3 +22,10 @@ def show_experience(request):
         "experience_list": Experience.objects.all(),
     }
     return render(request, "experience.html", context)
+
+def show_skills(request):
+    skills = Skill.objects.all()
+    context = {
+        'skills': skills,
+    }
+    return render(request, 'skills.html', context)
