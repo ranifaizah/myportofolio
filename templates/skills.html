@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Daftar Skill</h1>
+
+{% if skills %}
+    <ul>
+        {% for skill in skills %}
+            <li>
+                <strong>{{ skill.name }}</strong> — {{ skill.get_category_display }}
+                <br>
+                Proficiency: {{ skill.get_proficiency_display }}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Belum ada data skill yang ditambahkan.</p>
+{% endif %}
+
+{% endblock %}
