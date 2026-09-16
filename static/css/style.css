@@ -431,7 +431,7 @@ h1, .brand { /*brand or judul pling gede */
 
 /**tutorisl 3 */
 
-.project-header {
+.skill-header {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -440,16 +440,16 @@ h1, .brand { /*brand or judul pling gede */
     margin-bottom: 1.5rem;
 }
 
-.project-grid {
+.skill-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.project-grid .experience-card {
+.skill-grid .experience-card {
     display: flex;
     flex-direction: column;
 }
 
-.project-image {
+.skill-image {
     display: block;
     width: 100%;
     height: auto;
@@ -457,28 +457,28 @@ h1, .brand { /*brand or judul pling gede */
     border-radius: var(--radius);
 }
 
-.project-header h1 {
+.skill-header h1 {
     margin-bottom: 0;
 }
 
-.project-add-button {
+.skill-add-button {
     display: inline-flex;
     align-items: center;
     gap: 0.45rem;
 }
 
-.project-add-button span {
+.skill-add-button span {
     font-size: 1.25rem;
     line-height: 1;
 }
 
-.project-search {
+.skill-search {
     display: flex;
     gap: 0.75rem;
     margin-bottom: 1.5rem;
 }
 
-.project-search__input {
+.skill-search__input {
     width: 100%;
     min-width: 0;
     padding: 0.7rem;
@@ -489,12 +489,12 @@ h1, .brand { /*brand or judul pling gede */
     font: inherit;
 }
 
-.project-search__input:focus {
+.skill-search__input:focus {
     outline: 2px solid var(--accent);
     border-color: var(--accent);
 }
 
-.project-actions {
+.skill-actions {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -502,12 +502,12 @@ h1, .brand { /*brand or judul pling gede */
     margin-top: 1rem;
 }
 
-.project-actions .button {
+.skill-actions .button {
     font-size: 0.85rem;
     font-weight: 600;
 }
 
-.project-card-actions {
+.skill-card-actions {
     display: flex;
     flex-direction: column;
     margin-top: auto;
@@ -517,11 +517,11 @@ h1, .brand { /*brand or judul pling gede */
     display: none !important;
 }
 
-.project-actions .experience-status {
+.skill-actions .experience-status {
     margin-top: 0;
 }
 
-.project-delete-modal {
+.skill-delete-modal {
     display: none;
     position: fixed;
     inset: 0;
@@ -538,11 +538,11 @@ h1, .brand { /*brand or judul pling gede */
     justify-content: center;
 }
 
-.project-delete-modal:popover-open {
+.skill-delete-modal:popover-open {
     display: flex;
 }
 
-.project-delete-modal__backdrop {
+.skill-delete-modal__backdrop {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -553,7 +553,7 @@ h1, .brand { /*brand or judul pling gede */
     cursor: default;
 }
 
-.project-delete-modal__content {
+.skill-delete-modal__content {
     position: relative;
     z-index: 1;
     width: min(100%, 480px);
@@ -564,7 +564,7 @@ h1, .brand { /*brand or judul pling gede */
     box-shadow: 0 1rem 3rem rgba(28, 25, 23, 0.22);
 }
 
-.project-delete-modal__content h2 {
+.skill-delete-modal__content h2 {
     margin: 0 0 0.75rem;
     font-family:
         "Space Grotesk",
@@ -573,7 +573,7 @@ h1, .brand { /*brand or judul pling gede */
     font-size: 1.5rem;
 }
 
-.project-delete-modal__close {
+.skill-delete-modal__close {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -586,7 +586,7 @@ h1, .brand { /*brand or judul pling gede */
     cursor: pointer;
 }
 
-.project-delete-modal__actions {
+.skill-delete-modal__actions {
     display: flex;
     justify-content: flex-end;
     gap: 0.75rem;
@@ -598,40 +598,40 @@ h1, .brand { /*brand or judul pling gede */
 }
 
 @media (max-width: 600px) {
-    .project-header {
+    .skill-header {
         align-items: flex-start;
         flex-direction: column;
     }
 
-    .project-add-button {
+    .skill-add-button {
         width: 100%;
         justify-content: center;
     }
 
-    .project-search {
+    .skill-search {
         flex-direction: column;
     }
 
-    .project-search .button {
+    .skill-search .button {
         width: 100%;
     }
 
-    .project-delete-modal {
+    .skill-delete-modal {
         align-items: flex-end;
         padding: 0;
     }
 
-    .project-delete-modal__content {
+    .skill-delete-modal__content {
         width: 100%;
         padding: 1.25rem;
         border-radius: var(--radius) var(--radius) 0 0;
     }
 
-    .project-delete-modal__actions {
+    .skill-delete-modal__actions {
         flex-direction: column-reverse;
     }
 
-    .project-delete-modal__actions .button {
+    .skill-delete-modal__actions .button {
         width: 100%;
         text-align: center;
     }
