@@ -61,10 +61,30 @@ def create_experiences(request):
     if request.method == "POST" and form.is_valid():
         form.save()
         messages.success(request, "Experience baru berhasil ditambahkan!")
-        return redirect("main:show_experieces")
+        return redirect("main:show_experiences")
 
     context = {
         "name": "Rani",
         "form": form,
     }
-    return render(request, "experiences_form.html", context)
+    return render(request, "experience_form.html", context)
+
+def get_skills_json(request):
+    title_query = request.GET.get("title", "").strip()
+    skills = Skill.objects.all()
+
+    if title_query:
+        skills = skills.filter(title__icontains=title_query)
+
+    skills_json = serializers.serialize("json", skills)
+    return HttpResponse(skills_json, content_type="application/json")
+
+def delete_skill(request, skill_id):
+    skill = get_object_or_404(Skill, sk=skill_id)
+
+    if request.method == "POST":
+        skill.delete()
+        messages.success(request, "Skill berhasil dihapus!")
+        return redirect("main:show_skills")
+
+    return redirect("main:show_skills")
