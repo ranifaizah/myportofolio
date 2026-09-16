@@ -12,4 +12,5 @@ urlpatterns = [
     path("experiences/add/", create_experiences, name="create_experiences"), 
     path("api/skills/", get_skills_json, name="get_skills_json"),
     path("skills/<uuid:skill_id>/delete/",delete_skill,name="delete_skill")
+    
 ]

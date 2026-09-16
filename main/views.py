@@ -80,7 +80,7 @@ def get_skills_json(request):
     return HttpResponse(skills_json, content_type="application/json")
 
 def delete_skill(request, skill_id):
-    skill = get_object_or_404(Skill, sk=skill_id)
+    skill = get_object_or_404(Skill, pk=skill_id)
 
     if request.method == "POST":
         skill.delete()
@@ -88,3 +88,26 @@ def delete_skill(request, skill_id):
         return redirect("main:show_skills")
 
     return redirect("main:show_skills")
+
+def get_experience_json(request):
+    title_query = request.GET.get("title", "").strip()
+    experience = Experience.objects.all()
+
+    if title_query:
+        experience = experience.filter(title__icontains=title_query)
+
+    experience_json = serializers.serialize("json", experience)
+    return HttpResponse(experience_json, content_type="application/json")
+
+def delete_experience(request, experience_id):
+    experience = get_object_or_404(Skill, pk=experience_id)
+
+    if request.method == "POST":
+        experience.delete()
+        messages.success(request, "Experience berhasil dihapus!")
+        return redirect("main:show_experience")
+
+    return redirect("main:show_experience")
+
+
+
