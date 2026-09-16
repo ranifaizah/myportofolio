@@ -100,14 +100,13 @@ def get_experience_json(request):
     return HttpResponse(experience_json, content_type="application/json")
 
 def delete_experience(request, experience_id):
-    experience = get_object_or_404(Skill, pk=experience_id)
+    experience = get_object_or_404(Experience, pk=experience_id)
 
     if request.method == "POST":
         experience.delete()
         messages.success(request, "Experience berhasil dihapus!")
-        return redirect("main:show_experience")
+        return redirect("main:show_experiences")
 
-    return redirect("main:show_experience")
-
+    return redirect("main:show_experiences")
 
 
