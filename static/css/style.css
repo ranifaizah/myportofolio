@@ -596,7 +596,40 @@ h1, .brand {
     gap: 0.75rem;
     margin-top: 1.5rem;
 }
+/* button */
+.button {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--paper);
+    background-color: var(--ink);
+    border: none;
+    border-radius: var(--radius);
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
 
+.button:hover {
+    background-color: var(--accent);
+}
+
+.button-secondary {
+    background-color: transparent;
+    color: var(--ink);
+    border: 1px solid var(--line);
+}
+
+.button-danger {
+    background-color: #b42318;
+    color: #fff;
+}
+
+.button-danger:hover {
+    background-color: #8f1c13;
+}
+/*nuttpon end */
 .button-danger {
     background: #b42318;
 }
