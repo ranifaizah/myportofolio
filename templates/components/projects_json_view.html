@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block meta %}
+    <title>Projects (from JSON) - {{ name }}</title>
+{% endblock meta %}
+{% block content %}
+    <main>
+        <section class="experience-section">
+            <div class="container">
+                <h1>Projects (Deserialized JSON)</h1>
+                <div class="experience-grid">
+                    {% for project in projects %}
+                        <article class="experience-card">
+                            <h2>{{ project.object.title }}</h2>
+                            <span class="experience-category">
+                                {% if project.object.is_finished %}Selesai{% else %}Dalam Proses{% endif %}
+                            </span>
+                            <p class="experience-description">{{ project.object.description }}</p>
+                        </article>
+                    {% empty %}
+                        <p class="empty-state">Belum ada data.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock content %}
