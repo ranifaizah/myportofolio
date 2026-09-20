@@ -1,5 +1,3 @@
-
-/*menghilangkan margin default browser */
 * {
     margin: 0;
     padding: 0;
@@ -8,67 +6,66 @@
 
 
 :root {
-    --ink: #1c171a; /*warna text utama */
-    --paper: #faf6f0; /*warna bg */
-    --accent: #d95d39; /*warna accent*/
-    --accent-dark: #a8442a; /*shading gelap dri accent color*/
-    --line: #e3d9c9; /*warna garis pembatas */
-    --text-muted: #6b6459; /*warna secondary text */
-    --radius: 4px; /*border radiusnya seberapa */
+    --ink: #1c171a;
+    --paper: #faf6f0;
+    --accent: #d95d39;
+    --accent-dark: #a8442a;
+    --line: #e3d9c9;
+    --text-muted: #6b6459;
+    --radius: 4px;
 }
 
 body {
-    /*jenis font*/
     font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: var(--ink); /*warna dri font nya */
-    background-color: var(--paper); /*warna bg */
-    line-height: 1.6; /*spacing*/
+    color: var(--ink);
+    background-color: var(--paper);
+    line-height: 1.6;
 }
 
-h1, .brand { /*brand or judul pling gede */
+h1, .brand {
     font-family: "Space Grotesk", -apple-system, sans-serif;
 }
 
-.container { /*pembatas utk nandain center nya mana */
+.container {
     max-width: 960px;
     margin: 0 auto;
     padding: 0 1.5rem;
 }
-.site-header { /*garis pembatas bawah header*/
+.site-header {
     border-bottom: 1px solid var(--line);
 }
 
-.site-header .container { /*container yang bakal ada di dalam header apa aja */
+.site-header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.25rem 1.5rem;
 }
 
-.brand { /*buat tulisan rani */
+.brand {
     font-size: 1.3rem;
     font-weight: 700;
     color: var(--ink);
     text-decoration: none;
 }
 
-.site-header nav { /*ngedisplay nav bar (profile dan skills for now..*/
+.site-header nav {
     display: flex;
     gap: 2rem;
 }
 
-.site-header nav a { /*styling tiap link yg ada dalam nav */
+.site-header nav a {
     color: var(--ink);
     text-decoration: none;
     font-size: 0.95rem;
 }
 
 /* ---hero section bagian atas (bagian profile) --- */
-.hero { /*buat jarak atas bawah */
+.hero {
     padding: 4.5rem 0 5rem;
 }
 
-.hero-grid { /*grid hero kanan kiri biar gampang atur posisi*/
+.hero-grid {
     display: grid;
     grid-template-columns: 1.3fr 1fr;
     grid-template-areas:
@@ -77,18 +74,18 @@ h1, .brand { /*brand or judul pling gede */
     gap: 1.5rem 3rem;
 }
 
-.hero-identity { /*naro elemen identitas */
+.hero-identity {
     grid-area: identity;
 }
 
-.hero-details { /*naro elemen detail */
+.hero-details {
     grid-area: details;
 }
 
-.hero-kicker { /*label di atas nama kek bagian "Computer Sciernce" . UI */
+.hero-kicker {
     font-size: 0.85rem;
     letter-spacing: 0.08em;
-    text-transform: uppercase; /*kapital semua */
+    text-transform: uppercase;
     color: var(--accent-dark);
     font-weight: 700;
     margin-bottom: 0.75rem;
@@ -99,19 +96,19 @@ h1, .brand { /*brand or judul pling gede */
     line-height: 0.95;
 }
 
-.bio { /*bagian bio lbh pudar */
+.bio {
     color: var(--text-muted);
     max-width: 480px;
     margin-bottom: 1.5rem;
 }
 
-.meta-list { /*utk tulisan "NPM" dan Program" */
+.meta-list {
     display: flex;
     gap: 2rem;
     margin-bottom: 1.5rem;
 }
 
-.meta-row dt { /*utk tulisan "NPM" dan Program" */
+.meta-row dt {
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -123,13 +120,13 @@ h1, .brand { /*brand or judul pling gede */
     font-weight: 600;
 }
 
-.social-links { /*wadah tombol sosmed*/
+.social-links {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
 }
 
-.social-link { /* styling tombol sosial media */
+.social-link {
     display: inline-block;
     font-size: 0.85rem;
     font-weight: 600;
@@ -145,13 +142,13 @@ h1, .brand { /*brand or judul pling gede */
     background-color: var(--accent);
 }
 
-.hero-photo { /*wadah foto profil */
+.hero-photo {
     grid-area: photo;
     align-self: center;
     position: relative;
 }
 
-.photo-block { /*kotak oren belakang foto */
+.photo-block {
     position: absolute;
     top: 1.25rem;
     left: 1.25rem;
@@ -162,7 +159,7 @@ h1, .brand { /*brand or judul pling gede */
     z-index: 0;
 }
 
-.avatar { /*foto nya */
+.avatar {
     position: relative;
     z-index: 1;
     display: block;
@@ -190,7 +187,7 @@ h1, .brand { /*brand or judul pling gede */
 }
 
 
-.skills-grid { /*wadah skills*/
+.skills-grid {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
@@ -429,7 +426,7 @@ h1, .brand { /*brand or judul pling gede */
     font-style: italic;
 }
 
-/**tutorisl 3 */
+/**tutorial 3 */
 
 .skill-header {
     width: 100%;
@@ -441,6 +438,7 @@ h1, .brand { /*brand or judul pling gede */
 }
 
 .skill-grid {
+    display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
@@ -453,7 +451,7 @@ h1, .brand { /*brand or judul pling gede */
     display: block;
     width: 100%;
     height: auto;
-    border: 1px solid black;
+    border: 1px solid var(--line);
     border-radius: var(--radius);
 }
 
@@ -491,6 +489,7 @@ h1, .brand { /*brand or judul pling gede */
 
 .skill-search__input:focus {
     outline: 2px solid var(--accent);
+    outline-offset: 2px;
     border-color: var(--accent);
 }
 
@@ -498,7 +497,7 @@ h1, .brand { /*brand or judul pling gede */
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 1.25rem;
     margin-top: 1rem;
 }
 
@@ -584,6 +583,11 @@ h1, .brand { /*brand or judul pling gede */
     font-size: 1.8rem;
     line-height: 1;
     cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.skill-delete-modal__close:hover {
+    color: var(--accent-dark);
 }
 
 .skill-delete-modal__actions {
@@ -671,6 +675,3 @@ h1, .brand { /*brand or judul pling gede */
         gap: 2rem;
     }
 }
-
-
-
