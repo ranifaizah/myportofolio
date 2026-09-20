@@ -99,7 +99,3 @@ class ExperienceForm(ModelForm):
             ),
         }
 
-    class ProjectForm(ModelForm):
-        class Meta:
-            model = Project
-            fields = ["title", "description", "is_finished", "project_url"]

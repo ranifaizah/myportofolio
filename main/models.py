@@ -53,11 +53,3 @@ class Skill(models.Model):
         return self.name
 
 
-    class Project(models.Model):
-
-        id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
-        title = models.CharField(max_length=255)
-        description = models.TextField()
-        is_finished = models.BooleanField(default=False)
-        project_url = models.URLField(blank=True, null=True)
-        timestamp = models.DateTimeField(auto_now_add=True)
