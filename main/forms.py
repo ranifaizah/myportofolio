@@ -2,7 +2,7 @@ from django.forms import ModelForm, TextInput, Textarea, URLInput, ChoiceField, 
 from django.forms.fields import DateTimeField
 from django.forms.widgets import DateTimeInput
 
-from main.models import Experience, Skill
+from main.models import Experience, Skill, Project
 
 class SkillForm(ModelForm):
     class Meta:
@@ -98,3 +98,8 @@ class ExperienceForm(ModelForm):
                 }
             ),
         }
+
+    class ProjectForm(ModelForm):
+        class Meta:
+            model = Project
+            fields = ["title", "description", "is_finished", "project_url"]
