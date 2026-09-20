@@ -427,6 +427,107 @@ h1, .brand {
 }
 
 /**tutorial 3 */
+/* ===== Experience actions/search (paralel dgn skill-*) ===== */
+
+.experience-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.experience-header h1 {
+    margin-bottom: 0;
+}
+
+.experience-add-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.experience-add-button span {
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.experience-search {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.experience-search__input {
+    width: 100%;
+    min-width: 0;
+    padding: 0.7rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--ink);
+    font: inherit;
+}
+
+.experience-search__input:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-color: var(--accent);
+}
+
+.experience-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+}
+
+.experience-card-actions {
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+}
+
+.experience-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-top: 1rem;
+}
+
+.experience-actions .button {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .experience-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .experience-add-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .experience-search {
+        flex-direction: column;
+    }
+
+    .experience-search .button {
+        width: 100%;
+    }
+}
+
+.experience-grid .experience-card {
+    display: flex;
+    flex-direction: column;
+}
 
 .skill-header {
     width: 100%;
