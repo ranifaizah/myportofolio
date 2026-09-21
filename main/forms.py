@@ -2,7 +2,7 @@ from django.forms import ModelForm, TextInput, Textarea, URLInput, ChoiceField, 
 from django.forms.fields import DateTimeField
 from django.forms.widgets import DateTimeInput
 
-from main.models import Experience, Skill, Project
+from main.models import Experience, Skill
 
 class SkillForm(ModelForm):
     class Meta:

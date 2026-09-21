@@ -8,8 +8,7 @@ from main.forms import SkillForm
 from main.forms import ExperienceForm
 from main.models import Experience
 from main.models import Skill
-from main.models import Project
-from main.forms import ProjectForm
+
 
 
 
@@ -110,6 +109,30 @@ def delete_experience(request, experience_id):
         return redirect("main:show_experiences")
 
     return redirect("main:show_experiences")
+
+def update_skill(request, skill_id):
+    skill = get_object_or_404(Skill, pk=skill_id)
+    form = SkillForm(request.POST or None, instance=skill)
+
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        messages.success(request, "Skill berhasil diperbarui!")
+        return redirect("main:show_skills")
+
+    context = {"name": "Rani", "form": form}
+    return render(request, "skills_form.html", context)  # bisa reuse template create
+
+def update_experience(request, experience_id):
+    experience = get_object_or_404(Experience, pk=experience_id)
+    form = ExperienceForm(request.POST or None, instance=experience)
+
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        messages.success(request, "Experience berhasil diperbarui!")
+        return redirect("main:show_experiences")
+
+    context = {"name": "Rani", "form": form}
+    return render(request, "experience_form.html", context)
 
 
 
