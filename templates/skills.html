@@ -21,28 +21,26 @@
                     <input type="search"
                             name="title"
                             value="{{ title_query }}"
-                            placeholder="Cari berdasarkan nama proyek"
+                            placeholder="Cari berdasarkan nama skill"
                             class="skill-search__input"
-                            aria-label="Cari berdasarkan nama proyek">
+                            aria-label="Cari berdasarkan nama skill">
                     <button type="submit" class="button">Cari</button>
                 </form>
                 <div class="experience-grid skill-grid">
                     {% for skill in skill_list %}
                         <article class="experience-card">
-                            {% if skill.skill_image_url %}
-                                <img src="{{ skill.skill_image_url }}"
-                                        alt="Gambar {{ skill.title }}"
+                            {% if skill.icon %}
+                                <img src="{{ skill.icon }}"
+                                        alt="Icon {{ skill.name }}"
                                         class="skill-image">
                             {% endif %}
-                            <h2>{{ skill.title }}</h2>
-                            <span class="experience-category">{{ skill.tech_stack }}</span>
-                            <p class="experience-description">{{ skill.description }}</p>
+                            <h2>{{ skill.name }}</h2>
+                            <span class="experience-category">{{ skill.category }}</span>
+                            <p class="experience-description">{{ skill.proficiency }}</p>
                             <div class="skill-card-actions">
                                 <div class="skill-actions">
-                                    {% if skill.skill_url %}
-                                        <a href="{{ skill.skill_url }}" class="button">Lihat Skill</a>
-                                    {% endif %}
-                                    {% include "components/skills_delete_modal.html" with Skills=skills %}
+                                    <a href="{% url 'main:update_skill' skill.id %}" class="button">Edit</a>
+                                    {% include "components/skills_delete_modal.html" with skill=skill %}
                                 </div>
                             </div>
                         </article>
