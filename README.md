@@ -59,3 +59,24 @@ Kalau menjalankan makemigrations saja (tanpa migrate), file migrasi sudah ada, t
 Kalau menjalankan migrate saja (tanpa makemigrations setelah ubah model), Django tidak tahu ada perubahan yang perlu diterapkan, karena belum ada file migrasi baru yang dibuat untuk perubahan tersebut sehingga migrate hanya menjalankan migrasi yang sudah ada, bukan mendeteksi perubahan model secara otomatis.
 
 Ai disclosure: Saya menggunakan claude AI untuk membantu menjelaskan struktur kode urls dan mengecek kesessuaian skills.html yang ingin saya buat agar fungsional seperti experience.html yang sudah dibuat saat tutorial. Saya juga menngunakan Claude AI untuk debugging beberapa line of code di mana saya meninggalkan potongan kode penting seperti import yang menyebabkan web menjadi error. Saya juga meminta bantuan saat membuat unit test dan meminta beberapa AI lain sebagai refrensi untuk jawaban refleksi tugas 2.
+
+
+
+
+### Tugas 3
+1. Kita menggunakan model form daripada html manual simpelnya karena model form itu lebih efisien. ModelForm bisa meng generate field langsung dari field model, jadi kalau kita ingin mengubah model (menambah/menghabpus suatu field), formnya tidak perlu kita tulis dari awal, berbeda dengan html manual di mana kita harus menulis setiap input sendiri sehingga rawan kesalahan dan bisa terjadi inkonsistensi. ModelForm juga memberikan kita validasi otomatis berbeda dengan html manual di mana kita harus menulis sendiri validasi di view sehingga rawan bug dan celah keamanan seperti user yang menginput data tak valid tapi tetap ter approve.
+
+> kenapa wajib pakai {% csrf_token %}: Fungsinya sebagai layer protection dari CSRF (Cross-Site Request Forgery) 
+{% csrf_token %} memastikan bahwa request POST benar-benar berasal dari form yang dibuat oleh aplikasi kita, bukan request palsu dari situs lain.
+
+2. JSON  lebih sering digunakan karena formatnya lebih sederhana, ringkas, dan mudah diproses oleh JavaScript maupun bahasa pemrograman lainnya terutama XML. Hal ini bisa kita lihat dari JSON yang tidak butuh di closing berulang kali, tidak seperti XML sehingga lebih hemat bandwidth. JSON juga lebih mudah dibaca manusia karena strukturnya lebih flat dan tidak ada tag pembuka-penutup yang berulang. Namun,  bukan berarti XML sudah tidak digunakan. XML masih banyak digunakan pada sistem tertentu.
+
+3. - Request masuk ke view (misal get_skills_json) lewat URL yang udah didaftarin di urls.py.
+- View query data dari database lewat Django ORM, misal Skill.objects.all(). Hasilnya berupa QuerySet berisi objek Python (model instance), bukan format yang bisa langsung dikirim lewat HTTP sebagai teks
+- Data ini di-serialize pakai serializers.serialize("json", data) ,mengubah objek Python/model menjadi string berformat JSON.
+- String JSON idibungkus menjadi HttpResponse dengan content_type="application/json", agar browser/client tau bahwa isinya JSON, bukan HTML biasa.
+- Response dikirim balik ke client (browser, JS fetch, atau aplikasi lain) yang bisa langsung parse JSON itu dan dipakai (misal ditampilkan, atau di-deserialize lagi untuk diolah lebih lanjut).
+
+Kita melakukan serialization karena data yang diperoleh dari model Django berupa object atau QuerySet Python, sedangkan client membutuhkan format data yang dapat ditransmisikan melalui HTTP, seperti JSON. Serialization mengubah object tersebut menjadi representasi JSON sehingga dapat dikirim dan diproses oleh frontend atau aplikasi lain.
+
+Ai disclosure: Saya menggunakan Claude AI untuk membantu saya memahami program yang saya buat dan program dari tutorial serta membantu mendebug segala error yang saya temukan dalam proses development tugas 3 
