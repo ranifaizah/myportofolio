@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block meta %}
-    <title>{% if form.instance.pk %}Edit Skill{% else %}Add Skill{% endif %} - {{ name }}</title>
+    <title>{% if is_edit %}Edit Skill{% else %}Add Skill{% endif %} - {{ name }}</title>
 {% endblock meta %}
 {% block content %}
     <main>
         <section class="experience-section">
             <div class="container">
-                <h1>{% if form.instance.pk %}Edit Skill{% else %}Add New Skills{% endif %}</h1>
+                <h1>{% if is_edit %}Edit Skill{% else %}Add New Skills{% endif %}</h1>
                 <form method="post"
-                        action="{% if form.instance.pk %}{% url 'main:update_skill' form.instance.pk %}{% else %}{% url 'main:create_skills' %}{% endif %}"
+                        action="{% if is_edit %}{% url 'main:update_skill' form.instance.pk %}{% else %}{% url 'main:create_skills' %}{% endif %}"
                         class="skills-form">
                     {% csrf_token %}
                     {% for field in form %}
@@ -21,7 +21,7 @@
                         </div>
                     {% endfor %}
                     <button type="submit" class="button">
-                        {% if form.instance.pk %}Simpan Perubahan{% else %}Tambah Skill{% endif %}
+                        {% if is_edit %}Simpan Perubahan{% else %}Tambah Skill{% endif %}
                     </button>
                     <a href="{% url 'main:show_skills' %}" class="button button-secondary">Batal</a>
                 </form>

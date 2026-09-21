@@ -58,6 +58,7 @@ def create_skills(request):
     context = {
         "name": "Rani",
         "form": form,
+        "is_edit": False,
     }
     return render(request, "skills_form.html", context)
 
@@ -124,7 +125,11 @@ def update_skill(request, skill_id):
         messages.success(request, "Skill berhasil diperbarui!")
         return redirect("main:show_skills")
 
-    context = {"name": "Rani", "form": form}
+    context = {
+        "name": "Rani",
+        "form": form,
+        "is_edit": True,
+    }
     return render(request, "skills_form.html", context)
 
 def update_experience(request, experience_id):
