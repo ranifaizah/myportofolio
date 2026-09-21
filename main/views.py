@@ -33,12 +33,17 @@ def show_experience(request):
         "experience_list": Experience.objects.all(),
     }
     return render(request, "experience.html", context)
-
 def show_skills(request):
-    skills = Skill.objects.all()   
+    title_query = request.GET.get("title", "").strip()
+    skills = Skill.objects.all()
+
+    if title_query:
+        skills = skills.filter(name__icontains=title_query)
+
     context = {
         'name': 'Rani',
-        'skill_list': skills,  
+        'skill_list': skills,
+        'title_query': title_query,
     }
     return render(request, 'skills.html', context)
 
@@ -75,7 +80,7 @@ def get_skills_json(request):
     skills = Skill.objects.all()
 
     if title_query:
-        skills = skills.filter(title__icontains=title_query)
+        skills = skills.filter(name__icontains=title_query)
 
     skills_json = serializers.serialize("json", skills)
     return HttpResponse(skills_json, content_type="application/json")
@@ -120,7 +125,7 @@ def update_skill(request, skill_id):
         return redirect("main:show_skills")
 
     context = {"name": "Rani", "form": form}
-    return render(request, "skills_form.html", context)  # bisa reuse template create
+    return render(request, "skills_form.html", context)
 
 def update_experience(request, experience_id):
     experience = get_object_or_404(Experience, pk=experience_id)
