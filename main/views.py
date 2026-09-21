@@ -28,9 +28,16 @@ def show_main(request):
 
 
 def show_experience(request):
+    title_query = request.GET.get("title", "").strip()
+    experiences = Experience.objects.all()
+
+    if title_query:
+        experiences = experiences.filter(title__icontains=title_query)
+
     context = {
         "name": "Rani",
-        "experience_list": Experience.objects.all(),
+        "experience_list": experiences,
+        "title_query": title_query,
     }
     return render(request, "experience.html", context)
 def show_skills(request):
@@ -73,6 +80,7 @@ def create_experiences(request):
     context = {
         "name": "Rani",
         "form": form,
+        "is_edit": False,
     }
     return render(request, "experience_form.html", context)
 
@@ -141,7 +149,11 @@ def update_experience(request, experience_id):
         messages.success(request, "Experience berhasil diperbarui!")
         return redirect("main:show_experiences")
 
-    context = {"name": "Rani", "form": form}
+    context = {
+        "name": "Rani",
+        "form": form,
+        "is_edit": True,
+    }
     return render(request, "experience_form.html", context)
 
 def show_skills_deserialized(request):
