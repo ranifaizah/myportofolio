@@ -12,6 +12,10 @@ urlpatterns = [
     path("api/skills/", get_skills_json, name="get_skills_json"),
     path("skills/<uuid:skill_id>/delete/",delete_skill,name="delete_skill"),
     path("experiences/<uuid:experience_id>/delete/",delete_experience,name="delete_experience"),
+    path("api/experiences/", get_experience_json, name="get_experience_json"),
+    path("skills/<uuid:skill_id>/update/", update_skill, name="update_skill"),
+    path("experiences/<uuid:experience_id>/update/", update_experience, name="update_experience"),
+    path("skills/json-view/", show_skills_deserialized, name="show_skills_deserialized"),
 
 
 ]

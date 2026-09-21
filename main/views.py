@@ -134,5 +134,11 @@ def update_experience(request, experience_id):
     context = {"name": "Rani", "form": form}
     return render(request, "experience_form.html", context)
 
+def show_skills_deserialized(request):
+    skills_json = serializers.serialize("json", Skill.objects.all())
+    skills = list(serializers.deserialize("json", skills_json))
+    context = {"name": "Rani", "skill_list": skills}
+    return render(request, "skills_deserialized.html", context)
+
 
 

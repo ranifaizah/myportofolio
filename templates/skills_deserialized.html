@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block meta %}
+    <title>Skills (JSON) - {{ name }}</title>
+{% endblock meta %}
+{% block content %}
+    <main>
+        <section class="skills-section">
+            <div class="container">
+                <h1>Skills (Hasil Deserialisasi JSON)</h1>
+                {% for skill in skill_list %}
+                    <p>{{ skill.object.name }} - {{ skill.object.category }}</p>
+                {% empty %}
+                    <p>Belum ada skill.</p>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+{% endblock content %}
