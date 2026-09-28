@@ -226,15 +226,19 @@ def logout_user(request):
 
 # Tanpa cek is_superuser: semua akun yang sudah login boleh memberi star
 @login_required(login_url="/login/")
-def toggle_star(request, project_id):
-    experience = get_object_or_404(Experience, pk=project_id)
+def toggle_star(request, experience_id):
+    experience = get_object_or_404(
+        Experience,
+        pk=experience_id
+    )
 
     if request.method == "POST":
-        # Kalau akun ini sudah pernah memberi star, batalkan star-nya.
-        # Kalau belum, tambahkan star.
+        
         if request.user in experience.starred_by.all():
+            # Jika sudah memberi star, batalkan star
             experience.starred_by.remove(request.user)
         else:
+            # Jika belum memberi star, tambahkan star
             experience.starred_by.add(request.user)
 
-    return redirect("main:show_projects")
+    return redirect("main:show_experiences")
