@@ -162,7 +162,12 @@ def delete_experience(request, experience_id):
 
     return redirect("main:show_experiences")
 
+
+@login_required(login_url="/login/")
 def update_skill(request, skill_id):
+    if not request.user.is_superuser:
+        raise PermissionDenied
+
     skill = get_object_or_404(Skill, pk=skill_id)
     form = SkillForm(request.POST or None, instance=skill)
 
@@ -176,6 +181,7 @@ def update_skill(request, skill_id):
         "form": form,
         "is_edit": True,
     }
+
     return render(request, "skills_form.html", context)
 
 @login_required(login_url="/login/")
