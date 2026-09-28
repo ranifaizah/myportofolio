@@ -16,7 +16,15 @@ urlpatterns = [
     path("skills/<uuid:skill_id>/update/", update_skill, name="update_skill"),
     path("experiences/<uuid:experience_id>/update/", update_experience, name="update_experience"),
     path("skills/json-view/", show_skills_deserialized, name="show_skills_deserialized"),
-    
+    path("register/", register, name="register"),
+    path("login/", login_user, name="login"),
+    path("logout/", logout_user, name="logout"),
+
+path(
+    "projects/<uuid:project_id>/star/",
+    toggle_star,
+    name="toggle_star",
+),
 
 
 ]

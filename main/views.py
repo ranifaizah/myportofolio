@@ -11,13 +11,34 @@ from main.models import Skill
 
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+import datetime
+
+from django.contrib.auth.decorators import login_required  
+from django.core.exceptions import PermissionDenied  
 
 
 
 
+def login_user(request):
+    form = AuthenticationForm(request, data=request.POST or None)
+
+    if request.method == "POST" and form.is_valid():
+        user = form.get_user()
+        login(request, user)
+        response = redirect("main:show_main")
+        response.set_cookie('last_login', datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        return response
+
+    context = {
+        "name": "Rani",
+        "form": form,
+    }
+    return render(request, "login.html", context)
 
 
 def show_main(request):
+    last_login = request.COOKIES.get("last_login", "Belum login")
+
     context = {
         "name": "Rani",
         "npm": "2506624013",
@@ -26,7 +47,9 @@ def show_main(request):
             "Mahasiswa Ilmu Komputer Universitas Indonesia yang tertarik "
             "pada pengembangan perangkat lunak dan pendidikan."
         ),
+        "last_login": last_login,
     }
+
     return render(request, "index.html", context)
 
 
@@ -57,7 +80,10 @@ def show_skills(request):
     }
     return render(request, 'skills.html', context)
 
+@login_required(login_url="/login/") 
 def create_skills(request):
+    if not request.user.is_superuser:
+        raise PermissionDenied
     form = SkillForm(request.POST or None)
 
     if request.method == "POST" and form.is_valid():
@@ -72,8 +98,11 @@ def create_skills(request):
     }
     return render(request, "skills_form.html", context)
 
+@login_required(login_url="/login/") 
 def create_experiences(request):
     form = ExperienceForm(request.POST or None)
+    if not request.user.is_superuser:
+        raise PermissionDenied
 
     if request.method == "POST" and form.is_valid():
         form.save()
@@ -97,8 +126,11 @@ def get_skills_json(request):
     skills_json = serializers.serialize("json", skills)
     return HttpResponse(skills_json, content_type="application/json")
 
+@login_required(login_url="/login/") 
 def delete_skill(request, skill_id):
     skill = get_object_or_404(Skill, pk=skill_id)
+    if not request.user.is_superuser:
+        raise PermissionDenied
 
     if request.method == "POST":
         skill.delete()
@@ -114,11 +146,14 @@ def get_experience_json(request):
     if title_query:
         experience = experience.filter(title__icontains=title_query)
 
-    experience_json = serializers.serialize("json", experience)
+    experience_json = serializers.serialize("json", experience, use_natural_foreign_keys=True )
     return HttpResponse(experience_json, content_type="application/json")
 
+@login_required(login_url="/login/") 
 def delete_experience(request, experience_id):
     experience = get_object_or_404(Experience, pk=experience_id)
+    if not request.user.is_superuser:
+        raise PermissionDenied
 
     if request.method == "POST":
         experience.delete()
@@ -181,3 +216,25 @@ def register(request):
     return render(request, "register.html", context)
 
 
+
+
+def logout_user(request):
+    logout(request)
+    response = redirect("main:show_main")
+    response.delete_cookie('last_login')
+    return response
+
+# Tanpa cek is_superuser: semua akun yang sudah login boleh memberi star
+@login_required(login_url="/login/")
+def toggle_star(request, project_id):
+    experience = get_object_or_404(Experience, pk=project_id)
+
+    if request.method == "POST":
+        # Kalau akun ini sudah pernah memberi star, batalkan star-nya.
+        # Kalau belum, tambahkan star.
+        if request.user in experience.starred_by.all():
+            experience.starred_by.remove(request.user)
+        else:
+            experience.starred_by.add(request.user)
+
+    return redirect("main:show_projects")
