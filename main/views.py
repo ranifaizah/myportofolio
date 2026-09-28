@@ -9,6 +9,9 @@ from main.forms import ExperienceForm
 from main.models import Experience
 from main.models import Skill
 
+from django.contrib.auth import login, logout
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+
 
 
 
@@ -162,5 +165,19 @@ def show_skills_deserialized(request):
     context = {"name": "Rani", "skill_list": skills}
     return render(request, "skills_deserialized.html", context)
 
+
+def register(request):
+    form = UserCreationForm(request.POST or None)
+
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        messages.success(request, "Akun berhasil dibuat. Silakan login.")
+        return redirect("main:login")
+
+    context = {
+        "name": "Burhan",
+        "form": form,
+    }
+    return render(request, "register.html", context)
 
 
