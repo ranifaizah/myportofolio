@@ -41,7 +41,9 @@
                             <p class="experience-description">{{ experience.description }}</p>
                             <div class="experience-card-actions">
                                 <div class="experience-actions">
+                                    {% if user.is_superuser %}
                                     <a href="{% url 'main:update_experience' experience.id %}" class="button">Edit</a>
+                                    {% endif %}
                                     {% include "components/experience_star.html" with experience=experience %}
                                     {% if user.is_superuser %}
                                     {% include "components/experience_delete_modal.html" with experience=experience %}

@@ -178,7 +178,11 @@ def update_skill(request, skill_id):
     }
     return render(request, "skills_form.html", context)
 
+@login_required(login_url="/login/")
 def update_experience(request, experience_id):
+    if not request.user.is_superuser:
+        raise PermissionDenied
+
     experience = get_object_or_404(Experience, pk=experience_id)
     form = ExperienceForm(request.POST or None, instance=experience)
 
@@ -233,7 +237,7 @@ def toggle_star(request, experience_id):
     )
 
     if request.method == "POST":
-        
+
         if request.user in experience.starred_by.all():
             # Jika sudah memberi star, batalkan star
             experience.starred_by.remove(request.user)
