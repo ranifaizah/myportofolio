@@ -1,8 +1,62 @@
-    {% load static %}
-    <div id="toast-component" class="toast-component toast-hidden" popover="manual">
-        <div class="toast-content">
-            <h3 id="toast-title" class="toast-title">This is a Sample Title</h3>
-            <p id="toast-message" class="toast-message">This is a Sample Message</p>
-        </div>
+<div id="toast"
+    class="toast-component toast-hidden"
+    popover="manual">
+
+    <div>
+        <p id="toast-title" class="toast-title"></p>
+        <p id="toast-message" class="toast-message"></p>
     </div>
-    <script src="{% static 'js/toast.js' %}"></script>
+
+</div>
+
+
+<script>
+function showToast(title, message, type = "normal") {
+
+    const toast = document.getElementById("toast");
+    const toastTitle = document.getElementById("toast-title");
+    const toastMessage = document.getElementById("toast-message");
+
+    toastTitle.textContent = title;
+    toastMessage.textContent = message;
+
+    // Hapus tipe toast sebelumnya
+    toast.classList.remove(
+        "toast-success",
+        "toast-error",
+        "toast-normal",
+        "toast-hidden"
+    );
+
+    // Tambahkan tipe toast
+    if (type === "success") {
+        toast.classList.add("toast-success");
+    } else if (type === "error") {
+        toast.classList.add("toast-error");
+    } else {
+        toast.classList.add("toast-normal");
+    }
+
+    toast.classList.add("toast-show");
+
+    // Tampilkan popover
+    if (typeof toast.showPopover === "function") {
+        toast.showPopover();
+    }
+
+    // Hilang setelah 3 detik
+    setTimeout(function () {
+
+        toast.classList.remove("toast-show");
+        toast.classList.add("toast-hidden");
+
+        if (
+            typeof toast.hidePopover === "function" &&
+            toast.matches(":popover-open")
+        ) {
+            toast.hidePopover();
+        }
+
+    }, 3000);
+}
+</script>

@@ -19,12 +19,14 @@ urlpatterns = [
     path("register/", register, name="register"),
     path("login/", login_user, name="login"),
     path("logout/", logout_user, name="logout"),
+    path("experiences/add-ajax/", create_experience_ajax, name="create_experience_ajax"),
 
 path(
     "experiences/<uuid:experience_id>/star/",
     toggle_star,
     name="toggle_star",
 ),
+
 
 
 ]
