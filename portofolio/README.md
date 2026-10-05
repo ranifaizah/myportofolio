@@ -77,3 +77,19 @@ Ai disclosure: Saya menggunakan claude AI untuk membantu menjelaskan struktur ko
 Kita melakukan serialization karena data yang diperoleh dari model Django berupa object atau QuerySet Python, sedangkan client membutuhkan format data yang dapat ditransmisikan melalui HTTP, seperti JSON. Serialization mengubah object tersebut menjadi representasi JSON sehingga dapat dikirim dan diproses oleh frontend atau aplikasi lain.
 
 Ai disclosure: Saya menggunakan Claude AI untuk membantu saya memahami program yang saya buat dan program dari tutorial serta membantu mendebug segala error yang saya temukan dalam proses development tugas 3 
+
+### Tugas 5
+1. Debouncing adalah teknik untuk menunda eksekusi suatu fungsi sampai pengguna berhenti melakukan input selama beberapa waktu tertentu. Pada fitur pencarian dengan AJAX, debouncing penting agar fetch() tidak dikirim setiap kali pengguna menekan satu huruf. Misalnya pengguna mengetik “django”, tanpa debouncing bisa terjadi enam request terpisah. Dengan debouncing 300 ms, request baru dikirim setelah pengguna berhenti mengetik selama 300 ms. Teknik ini membantu mengurangi beban server, menghemat request jaringan, dan membuat pencarian lebih efisien.
+
+2. await digunakan untuk menunggu proses asynchronous selesai sebelum kode berikutnya dijalankan.await fetch(url) menunggu sampai server memberikan response, sedangkan await response.json() menunggu sampai response berhasil diubah menjadi data JSON. Jika await tidak digunakan, variabel tersebut akan berisi Promise, bukan hasil akhirnya. Akibatnya, kode bisa mencoba menggunakan data sebelum proses fetch() selesai dan menyebabkan hasil yang tidak sesuai atau error.
+
+3. XSS atau Cross-Site Scripting adalah serangan ketika penyerang menyisipkan kode JavaScript berbahaya ke dalam data yang kemudian dijalankan oleh browser pengguna lain. 3. Contohnya, penyerang memasukkan:
+<script>alert("XSS")</script>
+ke suatu field input. Jika data tersebut dimasukkan langsung ke HTML tanpa pengamanan, script tersebut bisa dijalankan di browser.
+Data yang ditampilkan melalui AJAX/JavaScript lebih rentan jika developer menggunakan innerHTML atau template string tanpa melakukan escaping. Pada template Django, data seperti:
+{{ experience.title }}
+secara default di-escape otomatis oleh Django sehingga karakter HTML berbahaya tidak langsung dijalankan. Sementara ketika menggunakan JavaScript seperti:
+element.innerHTML = data.title;
+browser akan menganggap isi tersebut sebagai HTML. Karena itu, data dari AJAX perlu diamankan dengan escapeHtml(), textContent, dan sebaiknya juga dibersihkan di sisi server menggunakan strip_tags() pada ModelForm.
+
+Ai disclosure: Saya menggunakan ChatGPT untuk membantu saya memahami program yang saya buat dan program dari tutorial serta membantu mendebug segala error yang saya temukan dalam proses development tugas 5
