@@ -278,30 +278,51 @@ async function addExperience(event) {
 
             showToast(
                 "Berhasil",
-                "Experience berhasil ditambahkan!",
+                result.message || "Experience berhasil ditambahkan!",
                 "success"
             );
 
-            fetchExperiences();
+            // Memperbarui daftar experience tanpa reload halaman
+            fetchExperiences(searchInput.value.trim());
+
         } else {
+            let errorMessage = result.message || "Data tidak valid.";
+
+            // Ambil pesan validasi dari server
+            if (result.errors) {
+                const messages = [];
+
+                Object.values(result.errors).forEach((fieldErrors) => {
+                    fieldErrors.forEach((error) => {
+                        messages.push(error.message);
+                    });
+                });
+
+                if (messages.length > 0) {
+                    errorMessage = messages.join(" ");
+                }
+            }
+
             showToast(
                 "Gagal",
-                "Data tidak valid",
+                errorMessage,
                 "error"
             );
         }
+
     } catch (error) {
         console.error(error);
+
         showToast(
             "Error",
-            "Tidak dapat terhubung ke server",
+            "Tidak dapat terhubung ke server.",
             "error"
         );
+
     } finally {
         button.disabled = false;
     }
 }
-
 if (experienceForm) {
     experienceForm.addEventListener("submit", addExperience);
 }

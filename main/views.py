@@ -292,6 +292,7 @@ def toggle_star(request, experience_id):
 
     return redirect("main:show_experiences")
 
+@login_required(login_url="/login/")
 @require_POST
 def create_experience_ajax(request):
     if not request.user.is_superuser:
