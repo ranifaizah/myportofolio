@@ -14,6 +14,11 @@ from rest_framework.response import Response
 from main.models import Experience
 from main.permissions import IsPortfolioOwnerOrReadOnly
 from main.serializers import ExperienceSerializer
+from rest_framework.decorators import renderer_classes
+from rest_framework.renderers import (
+    BrowsableAPIRenderer,
+    JSONRenderer,
+)
 
 
 # GET: Menampilkan daftar Experience
@@ -21,6 +26,7 @@ from main.serializers import ExperienceSerializer
 @api_view(["GET", "HEAD", "POST"])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsPortfolioOwnerOrReadOnly])
+@renderer_classes([BrowsableAPIRenderer, JSONRenderer])
 def experience_list(request):
 
     if request.method in ("GET", "HEAD"):
@@ -63,6 +69,7 @@ def experience_list(request):
 @api_view(["GET", "HEAD", "PUT", "PATCH", "DELETE"])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsPortfolioOwnerOrReadOnly])
+@renderer_classes([BrowsableAPIRenderer, JSONRenderer])
 def experience_detail(request, experience_id):
 
     experience = get_object_or_404(
@@ -102,6 +109,7 @@ def experience_detail(request, experience_id):
 @api_view(["POST"])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
+@renderer_classes([BrowsableAPIRenderer, JSONRenderer])
 def experience_star(request, experience_id):
 
     experience = get_object_or_404(
