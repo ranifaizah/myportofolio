@@ -16,6 +16,8 @@ from main.permissions import IsPortfolioOwnerOrReadOnly
 from main.serializers import ExperienceSerializer
 
 
+# GET: Menampilkan daftar Experience
+# POST: Menambahkan Experience baru
 @api_view(["GET", "HEAD", "POST"])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsPortfolioOwnerOrReadOnly])
@@ -36,14 +38,14 @@ def experience_list(request):
         serializer = ExperienceSerializer(
             experiences,
             many=True,
-            context={"request": request}
+            context={"request": request},
         )
 
         return Response(serializer.data)
 
     serializer = ExperienceSerializer(
         data=request.data,
-        context={"request": request}
+        context={"request": request},
     )
 
     serializer.is_valid(raise_exception=True)
@@ -51,10 +53,13 @@ def experience_list(request):
 
     return Response(
         serializer.data,
-        status=status.HTTP_201_CREATED
+        status=status.HTTP_201_CREATED,
     )
 
 
+# GET: Melihat detail Experience
+# PUT/PATCH: Mengubah Experience
+# DELETE: Menghapus Experience
 @api_view(["GET", "HEAD", "PUT", "PATCH", "DELETE"])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsPortfolioOwnerOrReadOnly])
@@ -62,26 +67,29 @@ def experience_detail(request, experience_id):
 
     experience = get_object_or_404(
         Experience.objects.prefetch_related("starred_by"),
-        pk=experience_id
+        pk=experience_id,
     )
 
     if request.method in ("GET", "HEAD"):
         serializer = ExperienceSerializer(
             experience,
-            context={"request": request}
+            context={"request": request},
         )
 
         return Response(serializer.data)
 
     if request.method == "DELETE":
         experience.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+
+        return Response(
+            status=status.HTTP_204_NO_CONTENT
+        )
 
     serializer = ExperienceSerializer(
         experience,
         data=request.data,
         partial=request.method == "PATCH",
-        context={"request": request}
+        context={"request": request},
     )
 
     serializer.is_valid(raise_exception=True)
@@ -90,6 +98,7 @@ def experience_detail(request, experience_id):
     return Response(serializer.data)
 
 
+# POST: Memberikan atau membatalkan Star
 @api_view(["POST"])
 @authentication_classes([SessionAuthentication])
 @permission_classes([IsAuthenticated])
@@ -97,7 +106,7 @@ def experience_star(request, experience_id):
 
     experience = get_object_or_404(
         Experience,
-        pk=experience_id
+        pk=experience_id,
     )
 
     if experience.starred_by.filter(
@@ -111,7 +120,7 @@ def experience_star(request, experience_id):
 
     serializer = ExperienceSerializer(
         experience,
-        context={"request": request}
+        context={"request": request},
     )
 
     return Response(serializer.data)
