@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.db.models import Count
 from django.views.decorators.http import require_POST
+from main.serializers import ExperienceSerializer
 
 from main.forms import SkillForm
 from main.forms import ExperienceForm
@@ -140,6 +141,7 @@ def delete_skill(request, skill_id):
 
     return redirect("main:show_skills")
 
+
 def get_experience_json(request):
     title_query = request.GET.get("title", "").strip()
 
@@ -152,41 +154,25 @@ def get_experience_json(request):
             title__icontains=title_query
         )
 
+    serializer = ExperienceSerializer(
+        experiences,
+        many=True,
+        context={"request": request}
+    )
+
     data = []
 
-    for experience in experiences:
-        starred_users = experience.starred_by.all()
-
-        is_starred = (
-            request.user in starred_users
-            if request.user.is_authenticated
-            else False
-        )
-
-        starred_by_names = ", ".join(
-            [
-                user.username
-                for user in starred_users
-            ]
-        )
+    for item in serializer.data:
+        item_data = dict(item)
+        pk = item_data.pop("id")
 
         data.append({
-            "pk": str(experience.id),
-            "fields": {
-                "title": experience.title,
-                "description": experience.description,
-                "category": experience.category,
-                "thumbnail": experience.thumbnail,
-                "star_count": starred_users.count(),
-                "is_starred": is_starred,
-                "starred_by_names": starred_by_names,
-            }
+            "pk": pk,
+            "fields": item_data
         })
 
-    return JsonResponse(
-        data,
-        safe=False
-    )
+    return JsonResponse(data, safe=False)
+
 
 @login_required(login_url="/login/") 
 def delete_experience(request, experience_id):

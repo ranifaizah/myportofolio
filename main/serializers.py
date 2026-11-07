@@ -1,7 +1,8 @@
+
 from django.utils.html import strip_tags
 from rest_framework import serializers
 
-from main.models import Project
+from main.models import Experience
 
 
 class ExperienceSerializer(serializers.ModelSerializer):
@@ -10,34 +11,69 @@ class ExperienceSerializer(serializers.ModelSerializer):
     starred_by_names = serializers.SerializerMethodField()
 
     class Meta:
-        model = Project
+        model = Experience
         fields = [
-            "id", "title", "description", "tech_stack",
-            "experience_url", "experience_image_url",
-            "star_count", "is_starred", "starred_by_names",
+            "id",
+            "title",
+            "description",
+            "category",
+            "thumbnail",
+            "started_at",
+            "ended_at",
+            "is_ongoing",
+            "star_count",
+            "is_starred",
+            "starred_by_names",
         ]
-        read_only_fields = ["id"]
 
+        read_only_fields = [
+            "id",
+            "is_ongoing",
+            "star_count",
+            "is_starred",
+            "starred_by_names",
+        ]
+
+    # Membersihkan title dari HTML
     def validate_title(self, value):
         value = strip_tags(value).strip()
+
         if not value:
-            raise serializers.ValidationError("Title cannot be empty.")
+            raise serializers.ValidationError(
+                "Title cannot be empty."
+            )
+
         return value
 
+    # Membersihkan description dari HTML
     def validate_description(self, value):
-        return strip_tags(value)
+        value = strip_tags(value).strip()
 
-    def validate_tech_stack(self, value):
-        return strip_tags(value)
+        if not value:
+            raise serializers.ValidationError(
+                "Description cannot be empty."
+            )
 
+        return value
+
+    # Menghitung jumlah star
     def get_star_count(self, obj):
         return obj.starred_by.count()
 
+    # Mengecek apakah user sudah memberikan star
     def get_is_starred(self, obj):
         request = self.context.get("request")
+
         if request is None or not request.user.is_authenticated:
             return False
-        return request.user in obj.starred_by.all()
 
+        return obj.starred_by.filter(
+            pk=request.user.pk
+        ).exists()
+
+    # Mengambil nama user yang memberikan star
     def get_starred_by_names(self, obj):
-        return ", ".join(user.username for user in obj.starred_by.all())
+        return ", ".join(
+            user.username
+            for user in obj.starred_by.all()
+        )
