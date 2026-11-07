@@ -156,3 +156,11 @@ MAILERS = {
 
 # gunakan https:// untuk trailing urlnya
 CSRF_TRUSTED_ORIGINS = ["http://rani-faizah-myportofolio.pws.cs.ui.ac.id/"]
+
+REST_FRAMEWORK = {
+    "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+        "rest_framework.renderers.BrowsableAPIRenderer",
+    ],
+}
+
