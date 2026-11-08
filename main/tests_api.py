@@ -1,6 +1,6 @@
 import uuid
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.urls import reverse
 from django.utils import timezone
 
@@ -14,6 +14,20 @@ class ExperienceAPITest(APITestCase):
     """Automated tests for the MyPortofolio Experience REST API."""
 
     def setUp(self):
+        
+        # Membuat akun Editor
+        self.editor = User.objects.create_user(
+            username="editor",
+            password="test-password",
+        )
+
+        # Memasukkan Editor ke grup Editor
+        self.editor_group, created = Group.objects.get_or_create(
+            name="Editor"
+        )
+
+        self.editor.groups.add(self.editor_group)
+
         self.owner = User.objects.create_superuser(
             username="owner",
             password="test-password",
@@ -263,21 +277,48 @@ class ExperienceAPITest(APITestCase):
         self.assertFalse(response.data["is_starred"])
         self.assertEqual(response.data["starred_by_names"], "")
 
-    def test_staff_who_is_not_superuser_cannot_manage_experience(self):
-        self.visitor.is_staff = True
-        self.visitor.save()
-        self.client.force_authenticate(user=self.visitor)
 
+    def test_editor_can_update_but_cannot_create_or_delete(self):
+        self.client.force_authenticate(user=self.editor)
+
+        # Editor boleh PATCH.
         response = self.client.patch(
             self.detail_url,
-            {"title": "Changed"},
+            {"title": "Updated by Editor"},
             format="json",
         )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        self.assertEqual(
-            response.status_code,
-            status.HTTP_403_FORBIDDEN,
+        # Editor boleh PUT.
+        response = self.client.put(
+            self.detail_url,
+            self.payload,
+            format="json",
         )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        # Editor tidak boleh POST.
+        response = self.client.post(
+            self.list_url,
+            self.payload,
+            format="json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        # Editor tidak boleh DELETE.
+        response = self.client.delete(
+            self.detail_url,
+            HTTP_ACCEPT="application/json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+        # Experience tetap tersedia.
+        self.assertTrue(
+            Experience.objects.filter(
+                pk=self.experience.id
+            ).exists()
+        )
+
 
     def test_wrong_method_returns_405(self):
         self.client.force_authenticate(user=self.owner)

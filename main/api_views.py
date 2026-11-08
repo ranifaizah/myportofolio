@@ -12,7 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from main.models import Experience
-from main.permissions import IsPortfolioOwnerOrReadOnly
+from main.permissions import IsPortfolioOwnerOrEditorOrReadOnly
 from main.serializers import ExperienceSerializer
 from rest_framework.decorators import renderer_classes
 from rest_framework.renderers import (
@@ -25,7 +25,7 @@ from rest_framework.renderers import (
 # POST: Menambahkan Experience baru
 @api_view(["GET", "HEAD", "POST"])
 @authentication_classes([SessionAuthentication])
-@permission_classes([IsPortfolioOwnerOrReadOnly])
+@permission_classes([IsPortfolioOwnerOrEditorOrReadOnly])
 @renderer_classes([BrowsableAPIRenderer, JSONRenderer])
 def experience_list(request):
 
@@ -68,7 +68,7 @@ def experience_list(request):
 # DELETE: Menghapus Experience
 @api_view(["GET", "HEAD", "PUT", "PATCH", "DELETE"])
 @authentication_classes([SessionAuthentication])
-@permission_classes([IsPortfolioOwnerOrReadOnly])
+@permission_classes([IsPortfolioOwnerOrEditorOrReadOnly])
 @renderer_classes([BrowsableAPIRenderer, JSONRenderer])
 def experience_detail(request, experience_id):
 
