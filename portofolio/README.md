@@ -93,3 +93,14 @@ element.innerHTML = data.title;
 browser akan menganggap isi tersebut sebagai HTML. Karena itu, data dari AJAX perlu diamankan dengan escapeHtml(), textContent, dan sebaiknya juga dibersihkan di sisi server menggunakan strip_tags() pada ModelForm.
 
 Ai disclosure: Saya menggunakan ChatGPT untuk membantu saya memahami program yang saya buat dan program dari tutorial serta membantu mendebug segala error yang saya temukan dalam proses development tugas 5
+
+### Tugas 6
+1. REST itu gaya arsitektur API yang terstruktur dan stateless bukan sekadar asal return JSON, melainkan harus memenuhi aturan standar seperti penggunaan HTTP method dan URI yang jelas, adapun bedanya, PUT dipakai saat kamu mau nimpuk/mengganti seluruh isi data resource secara utuh, sedangkan PATCH cuma dipakai kalau kamu cuma mau ngedit satu atau dua field spesifik saja tanpa mengganggu data lainnya.
+
+2. Di Django REST Framework, serializer bertindak sebagai jembatan otomatis yang mengubah data model Django ke format JSON dan sebaliknya, lengkap dengan fungsi validasi data input secara otomatis; ini jauh lebih efisien dan rapi dibanding ngerakit dictionary secara manual pakai JsonResponse, karena kamu gak perlu lagi nulis logika validasi dan penanganan error yang panjang lebar satu per satu.
+
+3. Autentikasi itu urusan memverifikasi identitas pengguna ("siapa kamu"), sedangkan otorisasi menentukan hak aksesnya ("kamu boleh ngapain aja"); otorisasi wajib dikunci di server menggunakan permission class karena menyembunyikan tombol di template cuma urusan antarmuka (UI), sehingga pengguna nakal masih bisa dengan mudah nembak endpoint API kamu secara langsung lewat Postman atau curl jika backend-nya tidak diamankan.
+
+4. Token CSRF tetap wajib untuk metode yang mengubah data (seperti POST/PUT/DELETE) pada SessionAuthentication karena browser akan otomatis mengirimkan cookie sesi pengguna bahkan dari situs web lain yang jahat; sementara itu, pengujian memakai force_authenticate tidak bisa membuktikan perlindungan CSRF sudah jalan karena fungsi test tersebut memang sengaja me-bypass seluruh lapisan validasi autentikasi dan middleware keamanan demi kemudahan pengujian logic.
+
+Ai disclosure: Dalam pengerjaan tugas ini, saya menggunakan ChatGPT (OpenAI) sebagai alat bantu untuk memahami konsep dan implementasi Django REST Framework, termasuk REST API, Serializer, Permission, API View, URL routing, integrasi halaman, serta pengujian menggunakan APITestCase.AI juga digunakan untuk membantu memberikan saran perbaikan kode, menjelaskan kesalahan yang mungkin terjadi, menyusun skenario pengujian, dan memperbaiki penulisan dokumentasi serta jawaban konseptual.
