@@ -1170,3 +1170,198 @@ h1, .brand {
         gap: 2rem;
     }
 }
+
+/* =====================================================================
+   Tema modal "kartu tarot"
+   Ditambahkan di akhir file. Semua aturan di bawah hanya berlaku untuk
+   elemen yang diberi class .tarot-modal oleh static/css/js/tarot-frame.js,
+   jadi tanpa JavaScript modal tetap tampil seperti desain awal.
+   ===================================================================== */
+:root {
+    --tarot-gold: #f0cf94;
+    --tarot-line-a: #f0cf94;
+    --tarot-line-b: var(--accent);
+    --tarot-rose: #e8aeae;
+    --tarot-paper: var(--paper);
+    --tarot-glow: #f6b98a;
+    --tarot-spark: #fff0cf;
+}
+
+.tarot-modal {
+    color-scheme: dark;
+    padding: 4.4rem 3rem 4.2rem;
+    border: 0;
+    color: var(--paper);
+    background:
+        radial-gradient(420px 260px at 90% 0%, rgba(217, 93, 57, 0.28), transparent 70%),
+        radial-gradient(380px 240px at 8% 100%, rgba(232, 174, 174, 0.14), transparent 70%),
+        linear-gradient(180deg, #2e2428, #1c171a 60%, #141012);
+    box-shadow: 0 1.5rem 4rem rgba(10, 6, 8, 0.6), 0 0 0 1px rgba(250, 246, 240, 0.06);
+    scrollbar-width: none;
+}
+
+.tarot-modal::-webkit-scrollbar {
+    display: none;
+}
+
+.tarot-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.tarot-frame svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: visible;
+}
+
+.tarot-frame .tw {
+    animation: tarot-twinkle 4s ease-in-out infinite;
+}
+
+@keyframes tarot-twinkle {
+    50% { opacity: 0.25; }
+}
+
+.tarot-modal h2 {
+    margin: 0 0 1.25rem;
+    text-align: center;
+    color: #fff3e6;
+}
+
+.tarot-modal p,
+.tarot-modal .experience-status {
+    color: rgba(250, 246, 240, 0.8);
+}
+
+.tarot-modal strong {
+    color: #fff3e6;
+}
+
+.tarot-modal [class*="__close"] {
+    top: 1.7rem;
+    right: 2.1rem;
+    width: 2rem;
+    height: 2rem;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 1px solid rgba(240, 207, 148, 0.45);
+    border-radius: 50%;
+    background: rgba(240, 207, 148, 0.08);
+    color: var(--tarot-gold);
+    font-size: 1.1rem;
+    line-height: 1;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.tarot-modal [class*="__close"]:hover {
+    background: rgba(240, 207, 148, 0.22);
+    color: #fff3e6;
+}
+
+/* isian form */
+.tarot-modal .form-group label {
+    color: var(--tarot-gold);
+}
+
+.tarot-modal .form-group input,
+.tarot-modal .form-group select,
+.tarot-modal .form-group textarea {
+    border: 1px solid rgba(240, 207, 148, 0.3);
+    background: rgba(0, 0, 0, 0.25);
+    color: var(--paper);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarot-modal .form-group input::placeholder,
+.tarot-modal .form-group textarea::placeholder {
+    color: rgba(250, 246, 240, 0.4);
+}
+
+.tarot-modal .form-group input:focus,
+.tarot-modal .form-group select:focus,
+.tarot-modal .form-group textarea:focus {
+    outline: none;
+    border-color: #f08a63;
+    box-shadow: 0 0 0 3px rgba(217, 93, 57, 0.3);
+}
+
+.tarot-modal .form-error {
+    color: #ff9b8a;
+}
+
+/* tombol */
+.tarot-modal .button {
+    background: linear-gradient(135deg, var(--accent), #e8895f);
+    color: #fff;
+    transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.tarot-modal .button:hover {
+    background: linear-gradient(135deg, var(--accent), #e8895f);
+    filter: brightness(1.1);
+}
+
+.tarot-modal .button-secondary,
+.tarot-modal .button-secondary:hover {
+    background: rgba(240, 207, 148, 0.06);
+    color: var(--tarot-gold);
+    border: 1px solid rgba(240, 207, 148, 0.4);
+}
+
+.tarot-modal .button-danger,
+.tarot-modal .button-danger:hover {
+    background: #b42318;
+    color: #fff;
+}
+
+.skill-delete-modal__content.tarot-modal {
+    padding: 4rem 3rem 3.6rem;
+}
+
+/* animasi buka */
+.experience-form-modal:popover-open .tarot-modal,
+.project-form-modal:popover-open .tarot-modal,
+.skill-delete-modal:popover-open .tarot-modal {
+    animation: tarot-pop 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+}
+
+@keyframes tarot-pop {
+    from { opacity: 0; transform: translateY(18px) scale(0.97); }
+    to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 600px) {
+    .tarot-modal {
+        padding: 4rem 2.2rem 3.8rem;
+    }
+
+    .tarot-modal h2 {
+        padding: 0 1.2rem;
+        font-size: 1.35rem;
+    }
+
+    .skill-delete-modal__content.tarot-modal {
+        padding: 3.8rem 2.2rem 3.4rem;
+    }
+
+    .tarot-modal [class*="__close"] {
+        right: 1.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tarot-frame .tw,
+    .experience-form-modal:popover-open .tarot-modal,
+    .project-form-modal:popover-open .tarot-modal,
+    .skill-delete-modal:popover-open .tarot-modal {
+        animation: none;
+    }
+}
