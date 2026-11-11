@@ -1,42 +1,208 @@
+
 {% extends 'base.html' %}
+
 {% block content %}
-    <main>
-        <section class="hero" id="profile">
-            <div class="container hero-grid">
+<main>
+    <section class="hero" id="profile">
+        <div class="container hero-grid">
+
+            <!-- LEFT SIDE: PROFILE INFORMATION -->
+            <div class="hero-copy">
+
                 <div class="hero-identity">
-                    <p class="hero-kicker">Computer Science &middot; Universitas Indonesia</p>
-                    <h1>{{ name }}</h1> <!---changes--->
+                    <p class="hero-kicker">
+                        Computer Science &middot; Universitas Indonesia
+                    </p>
+
+                    <h1>Portfolio</h1>
+
+                    <span class="hero-name">{{ name }}</span>
                 </div>
-                <div class="hero-photo">
-                    <div class="photo-block"></div>
-                    <img class="avatar" src="/static/img/ranran.jpe" alt="Photo of {{ name }}"> <!---changes--->
-                </div>
+
                 <div class="hero-details">
-                    <!---changes--->
-                    <p class="bio">{{ bio }}</p>
+
+                    <p class="bio">
+                        {{ bio }}
+                    </p>
+
+                    <!-- PROFILE DETAILS -->
                     <dl class="meta-list">
+
                         <div class="meta-row">
                             <dt>NPM</dt>
-                            <dd>{{ npm }}</dd> <!---changes--->
+                            <dd>{{ npm }}</dd>
                         </div>
+
                         <div class="meta-row">
-                            <dt>Program</dt>
-                            <dd> {{study_program}} </dd> <!---changes--->
+                            <dt>Program Studi</dt>
+                            <dd>{{ study_program }}</dd>
                         </div>
+
                         <div class="meta-row">
                             <dt>Sesi Terakhir Login</dt>
                             <dd>{{ last_login }}</dd>
                         </div>
+
                     </dl>
-                    <div class="social-links">
-                        <a href="https://github.com/ranifaizah" class="social-link">GitHub</a>
-                        <a href="https://www.linkedin.com/in/rani-faizah-a-/" class="social-link">LinkedIn</a>
-                        <a href="mailto:rani.faizah@ui.ac.id" class="social-link">Email</a>
+
+                    <!-- SOCIAL MEDIA -->
+                    <div class="social-links" aria-label="Tautan media sosial">
+
+                        <a
+                            href="https://github.com/ranifaizah"
+                            class="social-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            GitHub ↗
+                        </a>
+
+                        <a
+                            href="https://www.linkedin.com/in/rani-faizah-a-/"
+                            class="social-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            LinkedIn ↗
+                        </a>
+
+                        <a
+                            href="mailto:rani.faizah@ui.ac.id"
+                            class="social-link"
+                        >
+                            Email ↗
+                        </a>
+
                     </div>
+
                 </div>
             </div>
-        </section>
 
-    </main>
+
+            <!-- RIGHT SIDE: TAROT PROFILE PHOTO -->
+            <div class="hero-photo">
+
+                <div class="fan" aria-label="Foto profil dalam bingkai kartu tarot">
+
+                    <!-- LEFT TAROT CARD -->
+                    <div class="tcard side l" aria-hidden="true">
+
+                        <svg viewBox="0 0 100 100" role="presentation">
+                            <path
+                                d="M50 6l9 34 35 10-35 10-9 34-9-34-35-10 35-10z"
+                                fill="none"
+                                stroke="#f1d38a"
+                                stroke-width="2"
+                            />
+                        </svg>
+
+                        <b>THE STAR</b>
+                    </div>
+
+
+                    <!-- RIGHT TAROT CARD -->
+                    <div class="tcard side r" aria-hidden="true">
+
+                        <svg viewBox="0 0 100 100" role="presentation">
+                            <circle
+                                cx="50"
+                                cy="50"
+                                r="22"
+                                fill="none"
+                                stroke="#f1d38a"
+                                stroke-width="2"
+                            />
+
+                            <path
+                                d="M50 14v14M50 72v14M14 50h14M72 50h14"
+                                stroke="#f1d38a"
+                                stroke-width="2"
+                            />
+                        </svg>
+
+                        <b>THE SUN</b>
+                    </div>
+
+
+                    <!-- MAIN TAROT CARD -->
+                    <div class="tcard main">
+
+                        <!-- GOLD TAROT ORNAMENT -->
+                        <svg
+                            class="tarot-ornament"
+                            viewBox="0 0 250 400"
+                            preserveAspectRatio="none"
+                            aria-hidden="true"
+                        >
+
+                            <g fill="none" stroke="#f1d38a" stroke-width="1.2">
+
+                                <rect x="8" y="8" width="234" height="384" />
+                                <rect x="14" y="14" width="222" height="372" />
+
+                                <path d="
+                                    M30 14A16 16 0 0 1 14 30
+                                    M220 14A16 16 0 0 0 236 30
+                                    M14 370A16 16 0 0 0 30 386
+                                    M236 370A16 16 0 0 1 220 386
+                                " />
+
+                                <path d="
+                                    M103 14A22 22 0 0 0 147 14
+                                    M103 386A22 22 0 0 1 147 386
+                                " />
+
+                                <path
+                                    d="M8 192l6 8-6 8-6-8z M242 192l6 8-6 8-6-8z"
+                                    fill="#f1d38a"
+                                />
+
+                                <path
+                                    d="
+                                    M125 28l3 8 8 3-8 3-3 8-3-8-8-3 8-3z
+                                    M125 352l3 8 8 3-8 3-3 8-3-8-8-3 8-3z
+                                    "
+                                    fill="#f1d38a"
+                                />
+
+                            </g>
+
+                            <g fill="#f1d38a">
+                                <circle cx="14" cy="180" r="2" />
+                                <circle cx="14" cy="220" r="2" />
+                                <circle cx="236" cy="180" r="2" />
+                                <circle cx="236" cy="220" r="2" />
+                            </g>
+
+                        </svg>
+
+
+                        <!-- TAROT NUMBER -->
+                        <span class="tarot-number">XVII</span>
+
+
+                        <!-- PROFILE IMAGE -->
+                        <div class="arch">
+                            <img
+                                src="/static/img/ranran.jpe"
+                                alt="Foto profil {{ name }}"
+                            >
+                        </div>
+
+
+                        <!-- CARD LABEL -->
+                        <b>THE STAR</b>
+
+                        <small class="tarot-caption">
+                            S1 ILMU KOMPUTER
+                        </small>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>
 {% endblock content %}
-

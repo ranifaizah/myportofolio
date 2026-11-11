@@ -1,41 +1,163 @@
+
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#171447" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/style.css">
-    {% block meta %} {% endblock meta %}
-    <script src="/static/css/js/tarot-frame.js" defer></script>
-</head>
-    <body>
-        <header class="site-header">
-            <div class="container">
-                <a href="{% url 'main:show_main' %}" class="brand">{{ name }}</a>
-                <nav>
-                    <a href="{% url 'main:show_main' %}">Profile</a>
-                    <a href="{% url 'main:show_experiences' %}">Experience</a>
-                    <a href="{% url 'main:show_skills' %}">Skills</a>
-                    {% if user.is_authenticated %}
-                        <span class="nav-user">{{ user.username }}</span>
-                        <a href="{% url 'main:logout' %}">Logout</a>
-                    {% else %}
-                        <a href="{% url 'main:login' %}">Login</a>
-                        <a href="{% url 'main:register' %}">Register</a>
-                    {% endif %}
-                </nav>
-            </div>
-        </header>   
-        {% block content %} {% endblock content %}
 
-        <footer class="site-footer">
-            <div class="container">
-                <p>&copy; 2026 {{ name }}. Fakultas Ilmu Komputer, Universitas Indonesia.</p>
-            </div>
-        </footer>
-        {% include 'components/toast.html' %}
-    </body>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=20261112-celestial">
+
+    {% block meta %}{% endblock meta %}
+
+    <script src="{% static 'css/js/tarot-frame.js' %}" defer></script>
+</head>
+
+<body>
+
+    <!-- CELESTIAL BACKGROUND DECORATION -->
+    <div class="cosmic-scene" aria-hidden="true">
+
+        <svg class="cosmic-ribbons" viewBox="0 0 1200 900" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <linearGradient id="ribbon-violet" x1="0" x2="1">
+                    <stop offset="0" stop-color="#9b7bff" />
+                    <stop offset="1" stop-color="#8fd3ff" />
+                </linearGradient>
+
+                <linearGradient id="ribbon-pink" x1="0" x2="1">
+                    <stop offset="0" stop-color="#ff9ec7" />
+                    <stop offset="1" stop-color="#ffd9b8" />
+                </linearGradient>
+
+                <linearGradient id="ribbon-blue" x1="0" x2="1">
+                    <stop offset="0" stop-color="#8fd3ff" />
+                    <stop offset="1" stop-color="#c7b6ff" />
+                </linearGradient>
+            </defs>
+
+            <path
+                d="M-50 120 C200 20 300 260 520 150 S860 -40 1250 120 L1250 170 C880 40 640 260 520 210 S180 80 -50 180Z"
+                fill="url(#ribbon-violet)"
+                opacity=".42"
+            />
+
+            <path
+                d="M-50 560 C250 420 380 760 640 620 S1000 420 1250 560 L1250 620 C1010 490 760 700 640 690 S280 480 -50 620Z"
+                fill="url(#ribbon-pink)"
+                opacity=".32"
+            />
+
+            <path
+                d="M900 -20 C1050 200 760 360 960 560 S1150 800 1100 940 L1150 940 C1210 780 1010 640 830 520 S1000 200 950 -20Z"
+                fill="url(#ribbon-blue)"
+                opacity=".34"
+            />
+        </svg>
+
+        <!-- Shooting Stars -->
+        <span class="shooting-star shooting-one"></span>
+        <span class="shooting-star shooting-two"></span>
+        <span class="shooting-star shooting-three"></span>
+
+        <!-- Floating Paper Decorations -->
+        <span class="paper-scrap paper-one"></span>
+        <span class="paper-scrap paper-two"></span>
+        <span class="paper-scrap paper-three"></span>
+        <span class="paper-scrap paper-four"></span>
+        <span class="paper-scrap paper-five"></span>
+
+        <!-- Sparkles -->
+        <i class="sparkle s1">✦</i>
+        <i class="sparkle s2">✦</i>
+        <i class="sparkle s3">✦</i>
+        <i class="sparkle s4">✦</i>
+        <i class="sparkle s5">✦</i>
+        <i class="sparkle s6">✦</i>
+        <i class="sparkle s7">✦</i>
+        <i class="sparkle s8">✦</i>
+        <i class="sparkle s9">✦</i>
+        <i class="sparkle s10">✦</i>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+    <header class="site-header">
+        <div class="container">
+
+            <a href="{% url 'main:show_main' %}" class="brand">
+                {{ name }}
+            </a>
+
+            <nav aria-label="Navigasi utama">
+
+                <a href="{% url 'main:show_main' %}">
+                    Profile
+                </a>
+
+                <a href="{% url 'main:show_experiences' %}">
+                    Experience
+                </a>
+
+                <a href="{% url 'main:show_skills' %}">
+                    Skills
+                </a>
+
+                {% if user.is_authenticated %}
+
+                    <span class="nav-user">
+                        {{ user.username }}
+                    </span>
+
+                    <a href="{% url 'main:logout' %}">
+                        Logout
+                    </a>
+
+                {% else %}
+
+                    <a href="{% url 'main:login' %}">
+                        Login
+                    </a>
+
+                    <a href="{% url 'main:register' %}">
+                        Register
+                    </a>
+
+                {% endif %}
+
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    {% block content %}
+    {% endblock content %}
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+
+            <p>
+                &copy; 2026 {{ name }}.
+                Fakultas Ilmu Komputer,
+                Universitas Indonesia.
+            </p>
+
+        </div>
+    </footer>
+
+
+    <!-- TOAST NOTIFICATION -->
+    {% include 'components/toast.html' %}
+
+</body>
 </html>

@@ -1,33 +1,38 @@
-<div id="add-experience-modal"
-     class="experience-form-modal"
-     popover="auto"
-     role="dialog"
-     aria-modal="true"
-     aria-labelledby="add-experience-modal-title">
 
-    <button 
+<div id="add-experience-modal"
+    class="experience-form-modal"
+    popover="auto"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="add-experience-modal-title">
+
+    <button
         type="button"
         class="experience-form-modal__backdrop"
         popovertarget="add-experience-modal"
         popovertargetaction="hide"
-        aria-label="Tutup form tambah experience">
+        aria-label="Tutup form">
     </button>
 
     <div class="experience-form-modal__content">
-        <button 
+
+        <button
             type="button"
             class="experience-form-modal__close"
             popovertarget="add-experience-modal"
             popovertargetaction="hide"
-            aria-label="Tutup form tambah experience">
+            aria-label="Tutup form">
             ×
         </button>
 
-        <h2 id="add-experience-modal-title">
-            Tambah Experience Baru
-        </h2>
+        <div class="cosmic-form-heading">
+            <h2 id="add-experience-modal-title">
+                Tambah Experience
+            </h2>
+            <p>Isi detail pengalaman yang sudah kamu buat.</p>
+        </div>
 
-        <form 
+        <form
             id="experience-form"
             method="POST"
             action="{% url 'main:create_experiences' %}"
@@ -37,6 +42,7 @@
 
             {% for field in form %}
                 <div class="form-group">
+
                     <label for="{{ field.id_for_label }}">
                         {{ field.label }}
                     </label>
@@ -44,15 +50,15 @@
                     {{ field }}
 
                     {% for error in field.errors %}
-                        <p class="form-error">
-                            {{ error }}
-                        </p>
+                        <p class="form-error">{{ error }}</p>
                     {% endfor %}
+
                 </div>
             {% endfor %}
 
             <div class="experience-form-modal__actions">
-                <button 
+
+                <button
                     type="button"
                     class="button button-secondary"
                     popovertarget="add-experience-modal"
@@ -60,12 +66,13 @@
                     Batal
                 </button>
 
-                <button 
-                    type="submit"
-                    class="button">
-                    Tambah Experience
+                <button type="submit" class="button">
+                    Simpan Experience
                 </button>
+
             </div>
+
         </form>
+
     </div>
 </div>
