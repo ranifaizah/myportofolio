@@ -187,7 +187,7 @@ h1, .brand {
 }
 
 
-.skills-grid {
+.skills .skills-grid {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
@@ -252,7 +252,7 @@ h1, .brand {
     gap: 1.5rem;
 }
 
-.experience-card {
+.experience-list .experience-card {
     flex: 1 1 220px;
     background-color: var(--paper);
     border: 1px solid var(--line);
@@ -261,7 +261,8 @@ h1, .brand {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.experience-card:hover {
+.experience-list .experience-card:hover,
+.experience-grid .experience-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(28, 23, 26, 0.08);
 }
@@ -324,7 +325,7 @@ h1, .brand {
     gap: 1rem;
 }
 
-.experience-card {
+.experience-grid .experience-card {
     padding: 1.25rem;
     background-color: #e8aeae;
     border: 1px solid var(--line);
@@ -1147,36 +1148,6 @@ h1, .brand {
 }
 
 
-/*----responsve mobile ----*/
-@media (max-width: 600px) {
-    .hero-grid {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "identity"
-            "photo"
-            "details";
-    }
-
-    .hero-photo {
-        max-width: 220px;
-    }
-
-    .social-links {
-        justify-content: flex-start;
-    }
-
-    .skills-grid {
-        flex-direction: column;
-        gap: 2rem;
-    }
-}
-
-/* =====================================================================
-   Tema modal "kartu tarot"
-   Ditambahkan di akhir file. Semua aturan di bawah hanya berlaku untuk
-   elemen yang diberi class .tarot-modal oleh static/css/js/tarot-frame.js,
-   jadi tanpa JavaScript modal tetap tampil seperti desain awal.
-   ===================================================================== */
 :root {
     --tarot-gold: #f0cf94;
     --tarot-line-a: #f0cf94;
@@ -1363,5 +1334,59 @@ h1, .brand {
     .project-form-modal:popover-open .tarot-modal,
     .skill-delete-modal:popover-open .tarot-modal {
         animation: none;
+    }
+}
+
+/*----responsve mobile ----*/
+@media (max-width: 600px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "identity"
+            "photo"
+            "details";
+    }
+
+    .hero-photo {
+        max-width: 220px;
+    }
+
+    .social-links {
+        justify-content: flex-start;
+    }
+
+    .skills .skills-grid {
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
+
+
+
+/* ===== Final responsive fixes ===== */
+@media (max-width: 600px) {
+    .site-header .container {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .site-header nav {
+        flex-wrap: wrap;
+        gap: 0.75rem 1rem;
+    }
+
+    .meta-list {
+        flex-wrap: wrap;
+        gap: 1rem 1.5rem;
+    }
+
+    .experience-grid,
+    .skill-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .experience-list {
+        flex-direction: column;
     }
 }
