@@ -34,7 +34,7 @@ def login_user(request):
         return response
 
     context = {
-        "name": "Rani",
+        "name": "Rani Faizah A",
         "form": form,
     }
     return render(request, "login.html", context)
@@ -44,7 +44,7 @@ def show_main(request):
     last_login = request.COOKIES.get("last_login", "Belum login")
 
     context = {
-        "name": "Rani",
+        "name": "Rani Faizah A",
         "npm": "2506624013",
         "study_program": "S1 Ilmu Komputer",
         "bio": (
@@ -61,7 +61,7 @@ def show_experience(request):
     title_query = request.GET.get("title", "").strip()
 
     context = {
-        "name": "Rani",
+        "name": "Rani Faizah A",
         "title_query": title_query,
         "form": ExperienceForm(),
     }
@@ -76,7 +76,7 @@ def show_skills(request):
         skills = skills.filter(name__icontains=title_query)
 
     context = {
-        'name': 'Rani',
+        'name': 'Rani Faizah A',
         'skill_list': skills,
         'title_query': title_query,
     }
@@ -94,7 +94,7 @@ def create_skills(request):
         return redirect("main:show_skills")
 
     context = {
-        "name": "Rani",
+        "name": "Rani Faizah A",
         "form": form,
         "is_edit": False,
     }
@@ -112,7 +112,7 @@ def create_experiences(request):
         return redirect("main:show_experiences")
 
     context = {
-        "name": "Rani",
+        "name": "Rani Faizah A",
         "form": form,
         "is_edit": False,
     }
@@ -202,7 +202,7 @@ def update_skill(request, skill_id):
         return redirect("main:show_skills")
 
     context = {
-        "name": "Rani",
+        "name": "Rani Faizah A",
         "form": form,
         "is_edit": True,
     }
@@ -223,7 +223,7 @@ def update_experience(request, experience_id):
         return redirect("main:show_experiences")
 
     context = {
-        "name": "Rani",
+        "name": "Rani Faizah A",
         "form": form,
         "is_edit": True,
     }
@@ -232,7 +232,7 @@ def update_experience(request, experience_id):
 def show_skills_deserialized(request):
     skills_json = serializers.serialize("json", Skill.objects.all())
     skills = list(serializers.deserialize("json", skills_json))
-    context = {"name": "Rani", "skill_list": skills}
+    context = {"name": "Rani Faizah A", "skill_list": skills}
     return render(request, "skills_deserialized.html", context)
 
 

@@ -1,31 +1,78 @@
+
 {% extends "base.html" %}
+
 {% block meta %}
-    <title>{% if is_edit %}Edit Skill{% else %}Add Skill{% endif %} - {{ name }}</title>
+    <title>
+        {% if is_edit %}Edit Skill{% else %}Tambah Skill{% endif %}
+        - {{ name }}
+    </title>
 {% endblock meta %}
+
 {% block content %}
-    <main>
-        <section class="experience-section">
-            <div class="container">
-                <h1>{% if is_edit %}Edit Skill{% else %}Add New Skills{% endif %}</h1>
-                <form method="post"
-                        action="{% if is_edit %}{% url 'main:update_skill' form.instance.pk %}{% else %}{% url 'main:create_skills' %}{% endif %}"
-                        class="skills-form">
-                    {% csrf_token %}
-                    {% for field in form %}
-                        <div class="form-group">
-                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                            {{ field }}
-                            {% for error in field.errors %}
-                                <p class="form-error">{{ error }}</p>
-                            {% endfor %}
-                        </div>
+<main class="cosmic-form-page">
+
+    <section class="cosmic-form-panel">
+
+        <div class="cosmic-form-heading">
+            <h1>
+                {% if is_edit %}
+                    Edit Skill
+                {% else %}
+                    Tambah Skill
+                {% endif %}
+            </h1>
+
+            <p>
+                {% if is_edit %}
+                    Perbarui informasi keahlianmu.
+                {% else %}
+                    Tambahkan keahlian baru ke portofoliomu.
+                {% endif %}
+            </p>
+        </div>
+
+        <form method="post"
+              action="{% if is_edit %}{% url 'main:update_skill' form.instance.pk %}{% else %}{% url 'main:create_skills' %}{% endif %}"
+              class="skills-form cosmic-form">
+
+            {% csrf_token %}
+
+            {% for field in form %}
+                <div class="form-group">
+
+                    <label for="{{ field.id_for_label }}">
+                        {{ field.label }}
+                    </label>
+
+                    {{ field }}
+
+                    {% for error in field.errors %}
+                        <p class="form-error">{{ error }}</p>
                     {% endfor %}
-                    <button type="submit" class="button">
-                        {% if is_edit %}Simpan Perubahan{% else %}Tambah Skill{% endif %}
-                    </button>
-                    <a href="{% url 'main:show_skills' %}" class="button button-secondary">Batal</a>
-                </form>
+
+                </div>
+            {% endfor %}
+
+            <div class="cosmic-form-actions">
+
+                <a href="{% url 'main:show_skills' %}"
+                   class="button button-secondary">
+                    Batal
+                </a>
+
+                <button type="submit" class="button">
+                    {% if is_edit %}
+                        Simpan Perubahan
+                    {% else %}
+                        Tambah Skill
+                    {% endif %}
+                </button>
+
             </div>
-        </section>
-    </main>
+
+        </form>
+
+    </section>
+
+</main>
 {% endblock content %}

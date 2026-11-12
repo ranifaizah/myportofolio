@@ -8,11 +8,13 @@
 (function () {
     "use strict";
 
-    var SELECTOR = [
-        ".experience-form-modal__content",
-        ".project-form-modal__content",
-        ".skill-delete-modal__content"
-    ].join(",");
+var SELECTOR = [
+    ".experience-form-modal__content",
+    ".project-form-modal__content",
+    ".skill-delete-modal__content",
+    ".cosmic-form-panel"
+].join(",");
+
     var NS = "http://www.w3.org/2000/svg";
     var counter = 0;
 

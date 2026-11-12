@@ -1573,3 +1573,1220 @@ p {
         width: 100%;
     }
 }
+
+
+/* ==========================================
+   CELESTIAL FANTASY BACKGROUND
+   ========================================== */
+
+body {
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: #0a0828;
+}
+
+/* ==========================================
+   SCRAPBOOK BACKGROUND - TOP
+   ========================================== */
+
+.cosmic-scene {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+
+    overflow: hidden;
+    pointer-events: none;
+
+    opacity: 1;
+
+    background:
+        radial-gradient(
+            900px 500px at 85% 8%,
+            rgba(155, 123, 255, 0.35),
+            transparent 60%
+        ),
+        radial-gradient(
+            800px 600px at 10% 40%,
+            rgba(255, 158, 199, 0.18),
+            transparent 60%
+        ),
+        radial-gradient(
+            900px 600px at 15% 55%,
+            rgba(155, 123, 255, 0.18),
+            transparent 60%
+        ),
+        linear-gradient(
+            180deg,
+            #4a3dbd 0%,
+            #352c94 22%,
+            #241f6e 45%,
+            #161350 70%,
+            #0a0828 100%
+        );
+
+    transition: opacity 0.15s linear;
+}
+
+/* SVG ribbons */
+
+.cosmic-ribbons {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+}
+
+/* ==========================================
+   SHOOTING STARS
+   ========================================== */
+
+.shooting-star {
+    position: absolute;
+
+    width: 150px;
+    height: 2px;
+
+    border-radius: 2px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.95)
+    );
+
+    opacity: 0;
+
+    animation: shooting-animation 9s linear infinite;
+}
+
+.shooting-star::after {
+    content: "";
+
+    position: absolute;
+    right: -3px;
+    top: -3px;
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #fff;
+
+    box-shadow:
+        0 0 12px 4px rgba(255, 217, 94, 0.8);
+}
+
+.shooting-one {
+    top: 10%;
+    left: 10%;
+    animation-delay: 1s;
+}
+
+.shooting-two {
+    top: 28%;
+    left: 50%;
+    animation-delay: 4s;
+}
+
+.shooting-three {
+    top: 55%;
+    left: 5%;
+    animation-delay: 7s;
+}
+
+@keyframes shooting-animation {
+
+    0% {
+        opacity: 0;
+        transform: rotate(35deg) translateX(0);
+    }
+
+    2% {
+        opacity: 1;
+    }
+
+    12% {
+        opacity: 0;
+        transform: rotate(35deg) translateX(650px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: rotate(35deg) translateX(650px);
+    }
+
+}
+
+/* ==========================================
+   FLOATING SCRAPBOOK PAPER
+   ========================================== */
+
+.paper-scrap {
+    position: absolute;
+
+    width: 120px;
+    height: 155px;
+
+    border-radius: 5px;
+
+    opacity: 0.35;
+
+    background-color: #fbf4ff;
+
+    background-image: linear-gradient(
+        rgba(155, 123, 255, 0.25) 1px,
+        transparent 1px
+    );
+
+    background-size: 100% 22px;
+
+    box-shadow:
+        0 12px 30px rgba(10, 6, 50, 0.35);
+
+    animation: floating-paper 9s ease-in-out infinite;
+}
+
+.paper-scrap::before {
+    content: "";
+
+    position: absolute;
+    top: -6px;
+    left: 50%;
+
+    width: 45px;
+    height: 15px;
+
+    transform: translateX(-50%) rotate(-3deg);
+
+    background: rgba(255, 158, 199, 0.8);
+}
+
+.paper-one {
+    top: 9%;
+    left: 2%;
+    transform: rotate(-14deg);
+}
+
+.paper-two {
+    top: 30%;
+    right: 2%;
+    background-color: #ffe3ef;
+    transform: rotate(12deg);
+}
+
+.paper-three {
+    top: 64%;
+    left: 3%;
+    background-color: #e5ecff;
+    transform: rotate(9deg);
+}
+
+.paper-four {
+    top: 80%;
+    right: 5%;
+    transform: rotate(-10deg);
+}
+
+.paper-five {
+    top: 46%;
+    left: 44%;
+
+    width: 90px;
+    height: 110px;
+
+    opacity: 0.2;
+
+    transform: rotate(18deg);
+}
+
+@keyframes floating-paper {
+
+    50% {
+        translate: 0 -14px;
+    }
+
+}
+
+/* ==========================================
+   DECORATIVE SPARKLES
+   ========================================== */
+
+.sparkle {
+    position: absolute;
+
+    color: #ffd95e;
+
+    font-style: normal;
+
+    text-shadow:
+        0 0 10px rgba(255, 217, 94, 0.8);
+
+    animation: sparkle-animation 4s ease-in-out infinite;
+}
+
+.s1 { top: 10%; left: 12%; font-size: 20px; }
+.s2 { top: 18%; left: 75%; font-size: 12px; }
+.s3 { top: 35%; left: 25%; font-size: 10px; }
+.s4 { top: 42%; right: 10%; font-size: 17px; }
+.s5 { top: 60%; left: 45%; font-size: 12px; }
+.s6 { top: 75%; right: 20%; font-size: 18px; }
+.s7 { top: 82%; left: 12%; font-size: 13px; }
+.s8 { top: 25%; right: 30%; font-size: 9px; }
+.s9 { top: 55%; left: 85%; font-size: 14px; }
+.s10 { top: 90%; left: 60%; font-size: 12px; }
+
+@keyframes sparkle-animation {
+
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.3;
+        transform: scale(0.7);
+    }
+
+}
+
+/* ==========================================
+   MIDNIGHT BACKGROUND - SCROLL
+   ========================================== */
+
+.scroll-stars {
+    position: fixed;
+    inset: 0;
+
+    z-index: 0;
+
+    overflow: hidden;
+    pointer-events: none;
+
+    opacity: 0;
+
+    background:
+        radial-gradient(
+            900px 600px at 50% 100%,
+            rgba(39, 34, 91, 0.3),
+            transparent 75%
+        ),
+        linear-gradient(
+            180deg,
+            #100d36,
+            #08071f
+        );
+
+    transition: opacity 0.15s linear;
+}
+
+/* Stars */
+
+.scroll-stars i {
+    position: absolute;
+
+    display: block;
+
+    font-style: normal;
+    line-height: 1;
+
+    animation: night-twinkle 4s ease-in-out infinite;
+}
+
+.scroll-stars .star-dot {
+    border-radius: 50%;
+
+    background: currentColor;
+
+    box-shadow:
+        0 0 8px currentColor,
+        0 0 14px currentColor;
+}
+
+@keyframes night-twinkle {
+
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.25;
+        transform: scale(0.8);
+    }
+
+}
+
+/* ==========================================
+   WEBSITE CONTENT ABOVE BACKGROUND
+   ========================================== */
+
+.site-content {
+    position: relative;
+    z-index: 1;
+
+    min-height: 100vh;
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 768px) {
+
+    .paper-scrap {
+        width: 75px;
+        height: 105px;
+        opacity: 0.22;
+    }
+
+    .paper-five {
+        display: none;
+    }
+
+    .cosmic-ribbons {
+        opacity: 0.7;
+    }
+
+}
+
+/* ==========================================
+   REDUCED MOTION
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .shooting-star {
+        display: none;
+    }
+
+    .paper-scrap,
+    .sparkle,
+    .scroll-stars i {
+        animation: none;
+    }
+
+    .cosmic-scene,
+    .scroll-stars {
+        transition: none;
+    }
+
+}
+
+
+/* ==========================================
+   CELESTIAL FUN FACTS - LARGE BOOK PANEL
+========================================== */
+
+.book-facts-section {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 65px 24px 75px;
+}
+
+/* Main purple panel */
+.book-facts-panel {
+    position: relative;
+    isolation: isolate;
+
+    width: 100%;
+    max-width: 1290px;
+    min-height: 790px;
+
+    margin: 0 auto;
+    padding: 65px 35px 25px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(225, 197, 255, 0.3);
+    border-radius: 38px;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 90%,
+            rgba(255, 202, 170, 0.3),
+            transparent 38%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(108, 83, 177, 0.68),
+            rgba(96, 64, 133, 0.76)
+        );
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.25),
+        inset 0 1px 1px rgba(255,255,255,0.12);
+}
+
+/* Heading */
+.book-facts-heading {
+    position: relative;
+    z-index: 5;
+
+    text-align: center;
+    margin: 0 auto;
+}
+
+.book-facts-heading h2 {
+    margin: 0 0 12px;
+
+    color: #fff2e8;
+
+    font-family: "Fraunces", serif;
+    font-size: clamp(2rem, 4vw, 3.1rem);
+    font-weight: 800;
+
+    letter-spacing: -1px;
+}
+
+.book-facts-heading p {
+    max-width: 680px;
+    margin: 0 auto;
+
+    color: #d6c7f3;
+
+    font-family: "Nunito", sans-serif;
+    font-size: clamp(0.95rem, 1.5vw, 1.2rem);
+    line-height: 1.7;
+}
+
+/* ==========================================
+   FLOATING FACTS
+========================================== */
+
+.facts-floating-row {
+    position: relative;
+    z-index: 5;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 13px;
+
+    max-width: 850px;
+    margin: 125px auto 0;
+}
+
+.fact-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 64px;
+    padding: 12px 22px;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.09);
+    backdrop-filter: blur(10px);
+
+    color: #fff2e8;
+
+    font-family: "Nunito", sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+
+    box-shadow: 0 10px 25px rgba(15, 8, 50, 0.12);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.fact-pill:hover {
+    transform: translateY(-7px);
+
+    background: rgba(255, 255, 255, 0.17);
+    border-color: rgba(255, 217, 184, 0.6);
+}
+
+/* ==========================================
+   BOOK SCENE
+========================================== */
+
+.facts-book-scene {
+    position: absolute;
+
+    left: 50%;
+    bottom: 25px;
+
+    width: 100%;
+    height: 340px;
+
+    transform: translateX(-50%);
+
+    perspective: 1400px;
+    z-index: 2;
+}
+
+/* Spotlight behind book */
+.facts-book-light {
+    position: absolute;
+
+    left: 50%;
+    bottom: 115px;
+
+    width: 560px;
+    height: 340px;
+
+    transform: translateX(-50%);
+
+    background: radial-gradient(
+        ellipse at center bottom,
+        rgba(255, 222, 181, 0.55),
+        rgba(255, 222, 181, 0.15) 45%,
+        transparent 75%
+    );
+
+    clip-path: polygon(30% 100%, 70% 100%, 100% 0, 0 0);
+
+    opacity: 0;
+
+    transition: opacity 1s ease 0.5s;
+}
+
+.facts-book-scene.open .facts-book-light {
+    opacity: 1;
+}
+
+/* Book body */
+.facts-book {
+    position: absolute;
+
+    left: 50%;
+    bottom: 45px;
+
+    width: 820px;
+    height: 300px;
+
+    margin-left: -410px;
+
+    transform: rotateX(58deg);
+    transform-origin: 50% 100%;
+
+    transform-style: preserve-3d;
+}
+
+/* Teal book cover */
+.facts-book-cover {
+    position: absolute;
+
+    inset: -12px -14px;
+
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #2f858c,
+        #17515b
+    );
+
+    transform: translateZ(-6px);
+
+    box-shadow:
+        0 35px 65px rgba(0, 0, 0, 0.4);
+}
+
+/* Book pages */
+.facts-book-leaf {
+    position: absolute;
+    top: 0;
+
+    width: 400px;
+    height: 100%;
+
+    transform-style: preserve-3d;
+}
+
+.facts-book-leaf.left {
+    left: 10px;
+
+    transform-origin: 100% 50%;
+    transform: translateZ(3px) rotateY(180deg);
+
+    transition:
+        transform 1.8s cubic-bezier(.65, 0, .25, 1);
+}
+
+.facts-book-scene.open .facts-book-leaf.left {
+    transform: translateZ(3px) rotateY(0deg);
+}
+
+.facts-book-leaf.right {
+    left: 410px;
+}
+
+.facts-book-face {
+    position: absolute;
+    inset: 0;
+
+    border-radius: 6px;
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Cream lined pages */
+.facts-book-face.page {
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0 29px,
+            rgba(143, 112, 57, 0.12) 29px 30px
+        ),
+        linear-gradient(
+            90deg,
+            #f4e5bd,
+            #f0dfb0 75%,
+            #d7c18d
+        );
+
+    box-shadow:
+        0 4px 0 #d6bd82,
+        0 8px 0 #bda36d;
+}
+
+/* Left page lighting */
+.facts-book-leaf.left .page {
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0 29px,
+            rgba(143, 112, 57, 0.12) 29px 30px
+        ),
+        linear-gradient(
+            90deg,
+            #f4e5bd,
+            #f0dfb0
+        );
+}
+
+/* Right page lighting */
+.facts-book-leaf.right .page {
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0 29px,
+            rgba(143, 112, 57, 0.12) 29px 30px
+        ),
+        linear-gradient(
+            270deg,
+            #f4e5bd,
+            #f0dfb0
+        );
+}
+
+/* Book cover visible while closed */
+.facts-book-face.cover {
+    transform: rotateY(180deg);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 3px solid #f1d38a;
+
+    background: linear-gradient(
+        135deg,
+        #2f858c,
+        #17515b
+    );
+
+    color: #f1d38a;
+    font-size: 55px;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 900px) {
+
+    .book-facts-section {
+        padding: 35px 18px 45px;
+    }
+
+    .book-facts-panel {
+        min-height: 680px;
+        padding: 55px 20px 20px;
+    }
+
+    .facts-floating-row {
+        margin-top: 80px;
+        gap: 9px;
+    }
+
+    .fact-pill {
+        min-height: 48px;
+        padding: 10px 14px;
+        font-size: 0.82rem;
+    }
+
+    .facts-book {
+        transform: rotateX(58deg) scale(0.75);
+        transform-origin: 50% 100%;
+    }
+
+    .facts-book-light {
+        width: 420px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .book-facts-panel {
+        min-height: 590px;
+        border-radius: 25px;
+        padding: 45px 15px 15px;
+    }
+
+    .book-facts-heading h2 {
+        font-size: 1.8rem;
+    }
+
+    .book-facts-heading p {
+        font-size: 0.88rem;
+    }
+
+    .facts-floating-row {
+        margin-top: 65px;
+        max-width: 350px;
+    }
+
+    .fact-pill {
+        min-height: 42px;
+        padding: 8px 12px;
+        font-size: 0.74rem;
+        border-radius: 13px;
+    }
+
+    .facts-book-scene {
+        bottom: 10px;
+    }
+
+    .facts-book {
+        transform: rotateX(58deg) scale(0.48);
+        transform-origin: 50% 100%;
+    }
+
+    .facts-book-light {
+        width: 300px;
+        height: 230px;
+        bottom: 100px;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .facts-book-leaf.left,
+    .facts-book-light,
+    .fact-pill {
+        transition: none;
+    }
+
+}
+
+/* ==========================================
+   EXPERIENCE CARD - SMALLER LIKE REFERENCE
+   ========================================== */
+
+/* grid card jadi 3 kolom */
+.experience-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.15rem;
+    align-items: start;
+}
+
+/* ukuran card diperkecil */
+.experience-grid .experience-card {
+    padding: 0;
+    border-radius: 24px;
+    overflow: hidden;
+    min-height: unset;
+    background: linear-gradient(
+        180deg,
+        rgba(85, 70, 170, 0.95),
+        rgba(44, 34, 110, 0.95)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 14px 32px rgba(8, 6, 35, 0.28);
+}
+
+/* gambar lebih pendek */
+.experience-image,
+.experience-img {
+    width: 100%;
+    height: 180px;
+    max-height: none;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    object-fit: cover;
+    display: block;
+}
+
+/* isi card */
+.experience-grid .experience-card > h2,
+.experience-grid .experience-card > h3,
+.experience-grid .experience-card > .experience-category,
+.experience-grid .experience-card > .experience-description,
+.experience-grid .experience-card > p,
+.experience-grid .experience-card > .experience-card-actions {
+    margin-left: 1.2rem;
+    margin-right: 1.2rem;
+}
+
+/* judul lebih kecil */
+.experience-card h2,
+.experience-card h3 {
+    margin-top: 1rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.82rem;
+    line-height: 1.2;
+    color: #fff2e8;
+}
+
+/* kategori kecil */
+.experience-category {
+    margin-top: 0.15rem;
+    margin-bottom: 0.85rem;
+    padding: 0.38rem 0.85rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    border-radius: 999px;
+    background: rgba(255, 158, 199, 0.14);
+    border: 1px solid rgba(255, 158, 199, 0.24);
+    color: #ffb7d4;
+}
+
+/* deskripsi lebih ringkas */
+.experience-description {
+    margin-bottom: 0.85rem;
+    color: #d6c7f3;
+    font-size: 0.72rem;
+    line-height: 1.75;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* paragraf tambahan seperti star count */
+.experience-card > p {
+    margin-top: 0;
+    margin-bottom: 0.45rem;
+    color: #d6c7f3;
+    font-size: 0.72rem;
+}
+
+/* action bawah */
+.experience-card-actions {
+    margin-top: auto;
+    padding-top: 0.85rem;
+    padding-bottom: 1.15rem;
+}
+
+.experience-actions {
+    gap: 0.45rem;
+}
+
+/* tombol di card diperkecil */
+.experience-card .button,
+.experience-card button {
+    min-height: 36px;
+    padding: 0.5rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.72rem;
+    font-weight: 800;
+}
+
+/* hover tetap ada tapi halus */
+.experience-grid .experience-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px rgba(8, 6, 35, 0.34);
+}
+
+/* tablet */
+@media (max-width: 1100px) {
+    .experience-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* mobile */
+@media (max-width: 700px) {
+    .experience-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .experience-image,
+    .experience-img {
+        height: 190px;
+    }
+}
+
+/* ==========================================
+   SKILL CARD - COMPACT HORIZONTAL STYLE
+   ========================================== */
+
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.1rem;
+    align-items: start;
+}
+
+/* card skill jadi kecil dan horizontal */
+.skill-grid .experience-card {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    grid-template-rows: auto auto auto auto;
+    column-gap: 1rem;
+    row-gap: 0.35rem;
+
+    min-height: unset;
+    padding: 0.95rem 1rem;
+
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+
+    background: linear-gradient(
+        135deg,
+        rgba(85, 70, 170, 0.95),
+        rgba(44, 34, 110, 0.95)
+    );
+
+    box-shadow: 0 14px 28px rgba(8, 6, 35, 0.25);
+    overflow: hidden;
+}
+
+/* gambar/icon di kiri */
+.skill-image {
+    grid-column: 1;
+    grid-row: 1 / span 4;
+
+    width: 130px;
+    height: 130px;
+    margin: 0;
+
+    object-fit: contain;
+    object-position: center;
+
+    border: 0;
+    border-radius: 18px;
+    background: transparent;
+    display: block;
+    align-self: center;
+    justify-self: center;
+
+    padding: 0.2rem;
+}
+
+/* judul */
+.skill-grid .experience-card h2 {
+    grid-column: 2;
+    grid-row: 1;
+
+    margin: 0.15rem 0 0.15rem;
+    color: #fff2e8;
+    font-size: 1rem;
+    line-height: 1.25;
+    font-family: var(--font-display);
+}
+
+/* kategori */
+.skill-grid .experience-category {
+    grid-column: 2;
+    grid-row: 2;
+
+    margin: 0.1rem 0 0.2rem;
+    align-self: start;
+
+    padding: 0.35rem 0.75rem;
+    font-size: 0.68rem;
+    font-weight: 800;
+
+    border-radius: 999px;
+
+    background: rgba(255, 158, 199, 0.13);
+    border: 1px solid rgba(255, 158, 199, 0.24);
+    color: #ffb7d4;
+}
+
+/* proficiency / description */
+.skill-grid .experience-description {
+    grid-column: 2;
+    grid-row: 3;
+
+    margin: 0.1rem 0 0.25rem;
+    color: #d6c7f3;
+    font-size: 0.82rem;
+    line-height: 1.6;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* action area */
+.skill-card-actions {
+    grid-column: 2;
+    grid-row: 4;
+
+    margin-top: 0.2rem;
+}
+
+.skill-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-top: 0;
+}
+
+/* tombol lebih kecil */
+.skill-actions .button,
+.skill-actions button {
+    min-height: 34px;
+    padding: 0.45rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 800;
+}
+
+/* hover halus */
+.skill-grid .experience-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 34px rgba(8, 6, 35, 0.32);
+}
+
+/* kalau gambar/icon transparan, jangan kasih latar */
+.skill-grid .skill-image {
+    mix-blend-mode: normal;
+}
+
+/* tablet */
+@media (max-width: 1000px) {
+    .skill-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* mobile */
+@media (max-width: 640px) {
+    .skill-grid .experience-card {
+        grid-template-columns: 95px 1fr;
+        padding: 0.85rem;
+        border-radius: 20px;
+    }
+
+    .skill-image {
+        width: 95px;
+        height: 95px;
+        border-radius: 14px;
+    }
+
+    .skill-grid .experience-card h2 {
+        font-size: 0.9rem;
+    }
+
+    .skill-grid .experience-description {
+        font-size: 0.76rem;
+    }
+
+    .skill-actions .button,
+    .skill-actions button {
+        min-height: 30px;
+        padding: 0.38rem 0.7rem;
+        font-size: 0.7rem;
+    }
+}
+
+
+/* ==========================================
+   SKILLS - EQUAL SIZE CARDS
+========================================== */
+
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem;
+    align-items: stretch;
+}
+
+/* Semua card memiliki tinggi sama */
+.skill-grid > .experience-card {
+    min-height: 235px;
+    height: 100%;
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-columns: 155px minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr auto;
+
+    align-items: center;
+}
+
+/* Gambar konsisten */
+.skill-grid .skill-image {
+    width: 155px;
+    height: 155px;
+    object-fit: contain;
+    background: transparent;
+}
+
+/* Judul */
+.skill-grid .experience-card h2 {
+    align-self: end;
+    min-height: 2.5rem;
+    line-height: 1.3;
+}
+
+/* Kategori */
+.skill-grid .experience-category {
+    justify-self: start;
+}
+
+/* Level skill */
+.skill-grid .experience-description {
+    align-self: start;
+}
+
+/* Tombol selalu di bagian bawah */
+.skill-grid .skill-card-actions {
+    align-self: end;
+    margin-top: 0.5rem;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .skill-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .skill-grid > .experience-card {
+        min-height: 190px;
+        grid-template-columns: 100px minmax(0, 1fr);
+        padding: 0.85rem;
+    }
+
+    .skill-grid .skill-image {
+        width: 95px;
+        height: 95px;
+    }
+}
+

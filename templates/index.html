@@ -204,5 +204,100 @@
 
         </div>
     </section>
+
+
+
+<section class="book-facts-section" id="fun-facts">
+    <div class="book-facts-panel">
+
+        <!-- Heading -->
+        <div class="book-facts-heading">
+            <h2>Little facts about me</h2>
+            <p>A little glimpse of the person behind the code.</p>
+        </div>
+
+        <!-- Facts floating above book -->
+        <div class="facts-floating-row">
+
+            <span class="fact-pill">✦ Artist at heart</span>
+            <span class="fact-pill">Robotics enthusiast</span>
+            <span class="fact-pill">Creative thinker</span>
+            <span class="fact-pill">UI & design lover</span>
+            <span class="fact-pill">Tech for education</span>
+
+        </div>
+
+        <!-- Book scene -->
+        <div class="facts-book-scene" id="bookScene">
+
+            <div class="facts-book-light"></div>
+
+            <div class="facts-book">
+
+                <div class="facts-book-cover"></div>
+
+                <!-- Left page / opening cover -->
+                <div class="facts-book-leaf left">
+
+                    <div class="facts-book-face cover">
+                        ✦
+                    </div>
+
+                    <div class="facts-book-face page">
+                    </div>
+
+                </div>
+
+                <!-- Right page -->
+                <div class="facts-book-leaf right">
+
+                    <div class="facts-book-face page">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const scene = document.getElementById("bookScene");
+
+    if (!scene) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        scene.classList.add("open");
+        return;
+    }
+
+    const observer = new IntersectionObserver(
+        function (entries) {
+
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+                    scene.classList.add("open");
+                } else {
+                    scene.classList.remove("open");
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.2
+        }
+    );
+
+    observer.observe(scene);
+
+});
+</script>
+
 </main>
 {% endblock content %}
